@@ -44,7 +44,7 @@ def generate_fm_signal(sampling_frequency, duration, start_freq, end_freq):
     return signal
 
 # Parameters for the OctaveBandFilter
-filter_length = 101
+filter_length = 15
 center_frequency = 440  # Center frequency in Hz
 sampling_frequency = 8000  # Sampling frequency in Hz
 
@@ -53,9 +53,9 @@ octave_filter = OctaveBandFilter(filter_length, center_frequency, sampling_frequ
 octave_filter.calculate_coefficients()
 
 # Generating an FM signal
-duration = 1  # 1 second duration
-start_freq = 0  # Starting frequency of 0 Hz
-end_freq = 2 * octave_filter.center_frequency  # Ending at twice the center frequency of the filter
+duration = 5  # 1 second duration
+start_freq = 1  # Starting frequency of 0 Hz
+end_freq = 4 * octave_filter.center_frequency  # Ending at twice the center frequency of the filter
 fm_signal = generate_fm_signal(sampling_frequency, duration, start_freq, end_freq)
 
 # Filtering the FM signal
@@ -70,7 +70,7 @@ plt.xlabel('Sample')
 plt.ylabel('Amplitude')
 
 plt.subplot(2, 1, 2)
-plt.plot(filtered_fm_signal)
+plt.plot(np.abs(filtered_fm_signal))
 plt.title('Filtered Signal')
 plt.xlabel('Sample')
 plt.ylabel('Amplitude')
