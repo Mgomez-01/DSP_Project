@@ -12,3 +12,4 @@ Repo to contain all the work we do for the DSP project at the University of Utah
 
 ## Run testOBF.py
 - running tesOBF.py will call the filter class and sets things up. will call to calc coeffs and then apply the filter to data.
+`python3 testOBF.py`
