@@ -45,7 +45,7 @@ def generate_fm_signal(sampling_frequency, duration, start_freq, end_freq):
 
 # Parameters for the OctaveBandFilter
 filter_length = 101
-center_frequency = 1000  # Center frequency in Hz
+center_frequency = 440  # Center frequency in Hz
 sampling_frequency = 8000  # Sampling frequency in Hz
 
 # Creating the filter instance and calculating coefficients
