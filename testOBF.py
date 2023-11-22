@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 
 # Ben waz here
 # Ben waz not here
+# Ben waz here
 
 # Example usage
 filter_length = 100  # A typical length for FIR filters
