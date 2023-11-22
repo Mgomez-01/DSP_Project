@@ -3,6 +3,8 @@ import numpy as np
 from rich import print
 import matplotlib.pyplot as plt
 
+# Ben waz here
+
 # Example usage
 filter_length = 100  # A typical length for FIR filters
 center_frequency = 1000  # Center frequency in Hz
