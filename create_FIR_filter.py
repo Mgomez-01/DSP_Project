@@ -6,9 +6,8 @@ Created on Wed Nov 22 17:35:52 2023
 """
 
 import matplotlib.pyplot as plt
-from numpy.fft import fft,fftshift
-from numpy import zeros,append,cos,pi
-
+from numpy.fft import fft, fftshift
+from numpy import zeros, append, cos, pi, where, arange
 # =============================================================================
 # Creating an FIR filter
 # =============================================================================
@@ -24,23 +23,18 @@ w = zeros(N)   # N-point omega array (Only used for plotting against H(w) )
 
 # Create FIR Filter in Frequency Domain
 K = -1  # Integer used to keep track of position in array
-for k in range(int(-N/2),int(N/2)):
-    K = K + 1   # Increment the array posiiton-counter
-    w[K] = k/N  # Save the frequency to omega array
-    
-    # Implement simple square-wave style filter
-    if abs(k) >= fmin and abs(k) <= fmax:
-        H[K] = 1
-    else:
-        H[K] = 0
+K = arange(N)
+k = arange(-int(N/2), int(N/2))
+w = k / N
+
+# Implementing the square-wave style filter
+H = where((abs(k) >= fmin) & (abs(k) <= fmax), 1, 0)
 
 # Convert Frequency domain H(w) to time domain to obtain FIR
 h = fftshift(fft(fftshift(H)))
 # Create position array from 0 to N-1 for plotting
-pos = [0]*N
-for n in range(N):
-    pos[n] = n
-        
+pos = arange(N)
+
 # =============================================================================
 # Padding
 #
@@ -59,19 +53,19 @@ H_pad = fftshift(fft(h_pad))/N
 w_pad = zeros(NP)
 
 K = -1
-for k in range(int(-NP/2),int(NP/2)):
-    K = K + 1
-    w_pad[K] = k/NP
-    
+# Assuming NP is defined and w_pad is a numpy array of the appropriate size
+k = arange(-NP/2, NP/2)  # Creates an array from -NP/2 to NP/2-1
+w_pad = k / NP
+
 # =============================================================================
 # Implement Hamming Window
 # =============================================================================
+# Assuming N is defined and h is a numpy array of length N
+N = len(h)  # or some predefined value
+n = arange(N)  # creates an array [0, 1, ..., N-1]
+h_ham = h * 0.5 * (1 + cos(2 * pi * (n - N / 2) / N))
 
-h_ham = zeros(N)
-for n in range(N):
-    h_ham[n] = h[n]*0.5*(1 + cos(2*pi*(n-N/2)/N))
-
-h_ham_pad = append(h_ham,zeros(P))
+h_ham_pad = append(h_ham, zeros(P))
 H_ham_pad = fftshift(fft(h_ham_pad))/N
 
 
@@ -108,3 +102,4 @@ plt.yticks(fontsize=30)
 plt.grid(True)
 fig1.set_size_inches(22,16)
 plt.ticklabel_format(useOffset=False) # Useful to make plots easier to read
+plt.show()
