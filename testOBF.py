@@ -1,4 +1,5 @@
 from util.OctaveBandFilt import OctaveBandFilter, ourOctaveBandFilter
+from util.FIR_filter import FIRFilter
 import numpy as np
 import matplotlib.pyplot as plt
 from rich import print
@@ -135,7 +136,11 @@ plt.title('Scipy Filtered Signal')
 plt.xlabel('Sample')
 plt.ylabel('Amplitude')
 
-
-
 plt.tight_layout()
-plt.show()
+plt.show(block=False)
+fir_filter = [None]*10
+for i in range(0, 10):
+    fir_filter[i] = FIRFilter(N=32, fmin=i + 1, fmax=i + 5, padding_factor=25)
+    fir_filter[i].plot_filter()
+print(fir_filter)
+input()
