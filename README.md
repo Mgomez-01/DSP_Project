@@ -12,4 +12,19 @@ Repo to contain all the work we do for the DSP project at the University of Utah
 
 ## Run testOBF.py
 - running tesOBF.py will call the filter class and sets things up. will call to calc coeffs and then apply the filter to data.
-`python3 testOBF.py`
+```
+python3 testOBF.py
+```
+
+## Run create_FIR_filter.py
+- running create_FIR_filter.py like shown below will show the help option.
+```
+python3 create_FIR_filter.py -h
+```
+
+- example run with 32 elements and fmin=2, fmax=8
+```
+python3 create_FIR_filter.py -N 32 -F 2 8
+```
+
+
