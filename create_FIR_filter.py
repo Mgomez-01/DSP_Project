@@ -117,13 +117,14 @@ if __name__ == "__main__":
     parser.add_argument('-N', '--num', type=int, help='Specify a length for the filter <= 30')
     parser.add_argument('-F', '--freqs', nargs='+', help='Specify a two element list of frequencies for min and max')
     args = parser.parse_args()
-
-    if args.num is not None and args.num < 30:
-        print('min N is 30')
-        N = 30
+    
+    if args.num is None:
+        print('min N is 32')
+        N = 32
     else:
         N = args.num
-    freqs = [int(a) for a in args.freqs]
+        if args.num < 32:
+            N = 32
     if args.freqs is None:
         print('freq min and max are required')
         sys.exit()
@@ -131,6 +132,7 @@ if __name__ == "__main__":
         print('supply a min and a max. must have two')
         sys.exit(1)
     else:
+        freqs = [int(a) for a in args.freqs]
         fmax = freqs[1]
         fmin = freqs[0]
         if (fmax - fmin) < 0:
