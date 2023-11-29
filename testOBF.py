@@ -140,7 +140,7 @@ plt.tight_layout()
 plt.show(block=False)
 fir_filter = [None]*10
 for i in range(0, 10):
-    fir_filter[i] = FIRFilter(N=32, fmin=i + 1, fmax=i + 5, padding_factor=25)
+    fir_filter[i] = FIRFilter(N=100, fmin=i + 1, fmax=i + 25, padding_factor=25)
     fir_filter[i].plot_filter()
 print(fir_filter)
 input()
