@@ -66,8 +66,8 @@ class FIRFilter:
 
         # Time Domain Plot
         ax2 = fig.add_subplot(212)
-        ax2.vlines(self.pos, 0, self.h.imag, 'r')
         ax2.vlines(self.pos, 0, self.h.real, 'b')
+        ax2.vlines(self.pos, 0, self.h.imag, 'r')
         ax2.scatter(self.pos, self.h.real, c='b', s=150)
         ax2.scatter(self.pos, self.h.imag, c='r', s=150)
         ax2.set_xlabel('Position', fontsize=15, fontweight='bold')
