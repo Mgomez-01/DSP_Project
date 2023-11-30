@@ -10,7 +10,7 @@ class FIRFilter:
         self.fmin = fmin
         self.fmax = fmax
         self.padding_factor = padding_factor
-
+        
         self.H = zeros(N)
         self.w = zeros(N)
         self.pos = np.arange(N)
@@ -24,6 +24,9 @@ class FIRFilter:
         self.create_filter()
         self.apply_padding()
         self.apply_hamming_window()
+        self.buffer_length = 1024  # Set this based on your expected input chunk size
+        self.buffer = np.zeros(self.buffer_length + len(self.h_ham) - 1)
+
 
     def create_filter(self):
         k = np.arange(-int(self.N/2), int(self.N/2))
@@ -40,8 +43,29 @@ class FIRFilter:
 
     def apply_hamming_window(self):
         self.h_ham = self.h * 0.5 * (1 + np.cos(2 * np.pi * (self.pos - self.N / 2) / self.N))
+    # =============================================================================
+    #         Below is the hamming function from the assignment, It doesn't quite work so we're using the one above,
+    #         The line above also works for a wide bandwidth passband instead of at a single frequency point "wc"
+    # =============================================================================
+        # self.h_ham = self.h*(0.54-0.46*np.cos(2*np.pi*self.pos/(self.N-1)))*np.cos((self.fmin+self.fmax)/2*(self.pos-(self.N-1)/2))
         self.h_ham_pad = append(self.h_ham, zeros(self.padding_factor * self.N))
         self.H_ham_pad = fftshift(fft(self.h_ham_pad)) / self.N
+
+    def process(self, input_data):
+        # Append input data to buffer
+        self.buffer[:-len(input_data)] = self.buffer[len(input_data):]
+        self.buffer[-len(input_data):] = input_data
+
+        # Perform FFT-based convolution
+        input_fft = np.fft.fft(self.buffer)
+        filter_fft = np.fft.fft(self.h_ham, n=len(self.buffer))
+        result_fft = input_fft * filter_fft
+
+        # Inverse FFT to get the time domain signal
+        result = np.fft.ifft(result_fft)
+
+        # Return the relevant part of the result
+        return result[-len(input_data):].real  # Returning only the real part
 
     def plot_filter(self):
         # MatPlotLib plotting
