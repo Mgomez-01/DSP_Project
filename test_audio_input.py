@@ -90,12 +90,12 @@ def update_plot():
     if not data_queue.empty():
         octave_values = data_queue.get()
         stem_container[0].set_ydata(octave_values)
-        plt.draw()
+        plt.show()
         plt.pause(0.1)  # Adjust sleep time as needed
 
 
-on_threshold = 25  # Threshold to turn the indicator on
-off_threshold = 15  # Threshold to turn the indicator off
+on_threshold = 75  # Threshold to turn the indicator on
+off_threshold = 20  # Threshold to turn the indicator off
 is_note_detected = [False] * 7  # State for each octave
 
 
@@ -106,10 +106,11 @@ def callback(in_data, frame_count, time_info, status):
     # Plot a segment of audio data
     plt.cla()
     plt.plot(np.abs(filtered_data))
-    #ax2.set_ylim(-1, 1)  # Set the limits of the y-axis
-    #ax2.set_xlim(-25, 25)  # Set the limits of the y-axis
     plt.show()
     for i, data in enumerate(filtered_data):
+        if i == 0:
+            is_note_detected[i] = False
+            octave_values[i] = 0
         if is_note_detected[i]:
             if np.max(np.abs(data)) < off_threshold:
                 print(f"max data on filter {i} off: {np.max(np.abs(data))}")
