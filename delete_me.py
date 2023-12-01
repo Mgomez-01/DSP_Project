@@ -11,6 +11,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from rich import print
 
-x = 1
+x = 0
 f1 = FIRFilter(N=50, fmin=x, fmax=x+2, padding_factor=10)
 f1.plot_filter()
