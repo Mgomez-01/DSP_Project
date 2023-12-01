@@ -57,6 +57,8 @@ class FIRFilter:
         ax1.scatter(self.w, self.H.real, c='b', s=150)
         ax1.plot(self.w_pad, abs(self.H_pad), 'r')
         ax1.plot(self.w_pad, abs(self.H_ham_pad), 'black')
+        ax1.vlines(0.25,0,1)
+        ax1.hlines(0.5,-0.5,0.5)
         ax1.set_xlabel('Frequency (Ratio of Fs)', fontsize=15, fontweight='bold')
         ax1.set_ylabel('Magnitude', fontsize=15, fontweight='bold')
         ax1.set_title('Frequency Response of FIR Filter', fontsize=15, fontweight='bold')
