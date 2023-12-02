@@ -40,6 +40,11 @@ class FIRFilter:
 
     def apply_hamming_window(self):
         self.h_ham = self.h * 0.5 * (1 + np.cos(2 * np.pi * (self.pos - self.N / 2) / self.N))
+# =============================================================================
+#         Below is the hamming function from the assignment, It doesn't quite work so we're using the one above,
+#         The line above also works for a wide bandwidth passband instead of at a single frequency point "wc"
+# =============================================================================
+        # self.h_ham = self.h*(0.54-0.46*np.cos(2*np.pi*self.pos/(self.N-1)))*np.cos((self.fmin+self.fmax)/2*(self.pos-(self.N-1)/2))
         self.h_ham_pad = append(self.h_ham, zeros(self.padding_factor * self.N))
         self.H_ham_pad = fftshift(fft(self.h_ham_pad)) / self.N
 
@@ -61,8 +66,8 @@ class FIRFilter:
 
         # Time Domain Plot
         ax2 = fig.add_subplot(212)
-        ax2.vlines(self.pos, 0, self.h.imag, 'r')
         ax2.vlines(self.pos, 0, self.h.real, 'b')
+        ax2.vlines(self.pos, 0, self.h.imag, 'r')
         ax2.scatter(self.pos, self.h.real, c='b', s=150)
         ax2.scatter(self.pos, self.h.imag, c='r', s=150)
         ax2.set_xlabel('Position', fontsize=15, fontweight='bold')
