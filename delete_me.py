@@ -12,5 +12,5 @@ import matplotlib.pyplot as plt
 from rich import print
 
 x = 10
-f1 = FIRFilter(N=50, fmin=x, fmax=x+10, padding_factor=10)
+f1 = FIRFilter()
 f1.plot_filter2()

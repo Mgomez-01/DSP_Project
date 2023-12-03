@@ -5,10 +5,13 @@ import matplotlib.pyplot as plt
 
 
 class FIRFilter:
-    def __init__(self, N=10000, fmin=3, fmax=7, padding_factor=9):
+    def __init__(self, N=100, fmin=1000, fmax=2000, padding_factor=9, fs=8000):
         self.N = N
+        self.fs = fs
         self.fmin = fmin
         self.fmax = fmax
+        self._kmax = self.fmax/fs*N
+        self._kmin = self.fmin/fs*N
         self.padding_factor = padding_factor
 
         self.H = zeros(N)
@@ -27,8 +30,8 @@ class FIRFilter:
 
     def create_filter(self):
         k = np.arange(-int(self.N/2), int(self.N/2))
-        self.w = k / self.N
-        self.H = np.where((np.abs(k) >= self.fmin) & (np.abs(k) <= self.fmax), 1, 0)
+        self.w = k / self.N * self.fs
+        self.H = np.where((np.abs(k) >= self._kmin) & (np.abs(k) <= self._kmax), 1, 0)
         self.h = fftshift(fft(fftshift(self.H)))
 
     def apply_padding(self):
@@ -36,7 +39,7 @@ class FIRFilter:
         self.h_pad = append(self.h, zeros(self.padding_factor * self.N))
         self.H_pad = fftshift(fft(self.h_pad)) / self.N
         k = np.arange(-NP/2, NP/2)
-        self.w_pad = k / NP
+        self.w_pad = k / NP * self.fs
 
     def apply_hamming_window(self):
         self.h_ham = self.h * 0.5 * (1 + np.cos(2 * np.pi * (self.pos - self.N / 2) / self.N))
@@ -57,7 +60,7 @@ class FIRFilter:
         ax1.scatter(self.w, self.H.real, c='b', s=150)
         # ax1.plot(self.w_pad, abs(self.H_pad), 'r')
         # ax1.plot(self.w_pad, abs(self.H_ham_pad), 'black')
-        ax1.set_xlabel('Frequency (Ratio of Fs)', fontsize=15, fontweight='bold')
+        ax1.set_xlabel('Frequency (Hz)', fontsize=15, fontweight='bold')
         ax1.set_ylabel('Magnitude', fontsize=15, fontweight='bold')
         ax1.set_title('Frequency Response of FIR Filter', fontsize=15, fontweight='bold')
         ax1.legend(['Ideal', 'Actual', 'Hamming'], prop={'size': 15})
@@ -91,7 +94,7 @@ class FIRFilter:
         # ax1.plot(self.w, self.H.real, c='b')
         ax1.plot(self.w_pad, abs(self.H_pad), 'r')
         ax1.plot(self.w_pad, abs(self.H_ham_pad), 'black', linewidth=5)
-        ax1.set_xlabel('Frequency (Ratio of Fs)', fontsize=font, fontweight='bold')
+        ax1.set_xlabel('Frequency (Hz)', fontsize=font, fontweight='bold')
         ax1.set_ylabel('Magnitude', fontsize=font, fontweight='bold')
         ax1.set_title('Frequency Response of FIR Filter', fontsize=font+10, fontweight='bold')
         ax1.legend(['Original Points', 'Rectangle Window', 'Hamming Window'], prop={'size': font})
