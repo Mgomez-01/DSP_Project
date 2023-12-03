@@ -51,15 +51,15 @@ class FIRFilter:
         self.h_ham_pad = append(self.h_ham, zeros(self.padding_factor * self.N))
         self.H_ham_pad = fftshift(fft(self.h_ham_pad)) / self.N
 
-    def plot_filter(self):
+    def plot_filter1(self):
         # MatPlotLib plotting
         fig = plt.figure(figsize=(22, 16))
 
         # Frequency Response Plot
         ax1 = fig.add_subplot(211)
         ax1.scatter(self.w, self.H.real, c='b', s=150)
-        # ax1.plot(self.w_pad, abs(self.H_pad), 'r')
-        # ax1.plot(self.w_pad, abs(self.H_ham_pad), 'black')
+        ax1.plot(self.w_pad, abs(self.H_pad), 'r')
+        ax1.plot(self.w_pad, abs(self.H_ham_pad), 'black')
         ax1.set_xlabel('Frequency (Hz)', fontsize=15, fontweight='bold')
         ax1.set_ylabel('Magnitude', fontsize=15, fontweight='bold')
         ax1.set_title('Frequency Response of FIR Filter', fontsize=15, fontweight='bold')
