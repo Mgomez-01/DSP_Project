@@ -222,7 +222,7 @@ plt.figure(figsize=(20, 20))
 for i, filter in enumerate(filters):
     filtered_x = filter.process(x)
     filtered_sig = (filtered_x)
-
+    filtered
     plt.subplot(len(filters), 1, i+1)
     plt.plot(np.real(filtered_sig))
     plt.title(f'Filtered Signal with Filter {i+1}', fontsize=5, fontweight='bold')

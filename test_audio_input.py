@@ -23,6 +23,20 @@ def plot_update_thread():
 # plot_thread.start()
 
 
+def calculate_note_ranges(base_freq, num_notes, sample_rate):
+    note_ranges = []
+    for i in range(num_notes):
+        fmin = base_freq * (2 ** ((i)/12))  # Minimum frequency for the note
+        fmax = base_freq * (2 ** ((i + 1)/12))  # Maximum frequency for the note
+
+        # Normalize the frequencies
+        fmin_normalized = fmin / sample_rate
+        fmax_normalized = fmax / sample_rate
+
+        note_ranges.append((fmin_normalized, fmax_normalized))
+    return note_ranges
+
+
 def calculate_octave_ranges(base_freq, num_octaves, sample_rate):
     octave_ranges = []
     for i in range(num_octaves):
@@ -30,8 +44,8 @@ def calculate_octave_ranges(base_freq, num_octaves, sample_rate):
         fmax = base_freq * (2 ** (i + 1))  # Maximum frequency for the octave
 
         # Normalize the frequencies
-        fmin_normalized = fmin / sample_rate
-        fmax_normalized = fmax / sample_rate
+        fmin_normalized = 2*fmin / sample_rate
+        fmax_normalized = 2*fmax / sample_rate
 
         octave_ranges.append((fmin_normalized, fmax_normalized))
     return octave_ranges
@@ -44,7 +58,7 @@ print(f"num devices: {devices}")
 if devices < 1:
     print(f"num of devices is {devices}. need at least one device")
     sys.exit(1)
-sample_rate = 44100  # Adjust as needed
+sample_rate = 48000  # Adjust as needed
 mic_index = -1
 for i in range(pa.get_device_count()):
     dev = pa.get_device_info_by_index(i)
@@ -55,20 +69,29 @@ for i in range(pa.get_device_count()):
         mic_index = i
         sample_rate = 16000  # for razer kiyo cam
         break
+    if 'sysdefault' in dev['name']:
+        print(f"sydef mic, using index {i}")
+        mic_index = i
+        sample_rate = 48000  # for default mic in most systems
+        break
 
 if mic_index == -1:
     print("no mic detected...\nExiting")
     sys.exit(1)
 
 # Sample rate and base frequency
-base_freq = 27.5  # Starting frequency of the first octave
+base_freq = 16.35159783  # Starting frequency of the first octave
 # Calculate octave ranges
-octave_ranges = calculate_octave_ranges(base_freq, 7, 3500)
-N = 10000
+num_octaves = 7
+octave_ranges = calculate_octave_ranges(base_freq, num_octaves, 4000)
+num_notes = 88
+note_ranges = calculate_note_ranges(base_freq, num_notes, 4000)
+N = 100
 # Instantiate FIR filters for each octave
 filters = [FIRFilter(N, fmin=fmin*N, fmax=fmax*N, padding_factor=9) for fmin, fmax in octave_ranges]
+#filters = [FIRFilter(N, fmin=fmin*N, fmax=fmax*N, padding_factor=9) for fmin, fmax in octave_ranges]
 print(f"octave ranges: {octave_ranges}")
-#sys.exit(1)
+sys.exit(1)
 # Define a decay time in seconds (adjust as needed)
 decay_time = 0.25  # half a second, for example
 
@@ -79,24 +102,29 @@ last_detection_times = [0] * len(filters)
 # Initialize the plot
 plt.ion()  # Turn on interactive mode
 fig, ax = plt.subplots()
-octave_indices = np.arange(1, 8)  # Octave indices (1-7)
-octave_values = np.zeros(7)  # Initial octave values
+octave_indices = np.arange(1, num_notes+1)  # Octave indices (1-7)
+octave_values = np.zeros(num_notes)  # Initial octave values
 stem_container = ax.stem(octave_indices, octave_values)
-ax.set_ylim(0, 1.5)  # Set the limits of the y-axis
-ax.set_xlim(-2, 25)  # Set the limits of the y-axis
-
+stem_container2 = ax.stem(0, 0)
+#ax.set_ylim(0, 1.5)  # Set the limits of the y-axis
+#ax.set_xlim(-2, 9)  # Set the limits of the y-axis
+ax.set_ylim([0, 10])
+ax.set_xlim([0, 10])
+    
 
 def update_plot():
     if not data_queue.empty():
         octave_values = data_queue.get()
+        ax.set_ylim([0, 10])
+        ax.set_xlim([0, 10])
         stem_container[0].set_ydata(octave_values)
-        plt.show()
+        fig.canvas.draw()
         plt.pause(0.1)  # Adjust sleep time as needed
 
 
-on_threshold = 75  # Threshold to turn the indicator on
-off_threshold = 20  # Threshold to turn the indicator off
-is_note_detected = [False] * 7  # State for each octave
+on_threshold = 7000  # Threshold to turn the indicator on
+off_threshold = 100  # Threshold to turn the indicator off
+is_note_detected = [False] * num_notes  # State for each octave
 
 
 #fig2, ax2 = plt.subplots()
@@ -104,8 +132,12 @@ def callback(in_data, frame_count, time_info, status):
     audio_data = np.frombuffer(in_data, dtype=np.float32)
     filtered_data = [filter.process(audio_data) for filter in filters]
     # Plot a segment of audio data
+    # stem_container2[0].set_ydata(np.abs(filtered_data))
     plt.cla()
-    plt.plot(np.abs(filtered_data))
+    plt.plot(filtered_data)
+    plt.title("Harmonics in audio data")
+    ax.set_ylim([0, 10])
+    ax.set_xlim([0, 10])
     plt.show()
     for i, data in enumerate(filtered_data):
         if i == 0:
