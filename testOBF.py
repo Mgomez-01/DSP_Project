@@ -1,3 +1,5 @@
+
+
 from util.OctaveBandFilt import OctaveBandFilter, ourOctaveBandFilter
 from util.FIR_filter import FIRFilter
 import numpy as np
@@ -5,6 +7,7 @@ import matplotlib.pyplot as plt
 from rich import print
 import math
 
+fontsize = 20
 
 def calculate_grid_dimensions(n):
     columns = round(math.sqrt(n))
@@ -14,13 +17,13 @@ def calculate_grid_dimensions(n):
 
 def calculate_octave_ranges(base_freq, num_octaves, sample_rate):
     octave_ranges = []
-    for i in range(num_octaves):
+    for i in range(num_octaves+1):
         fmin = base_freq * (2 ** i)  # Minimum frequency for the octave
-        fmax = base_freq * (2 ** (i + 1))  # Maximum frequency for the octave
+        fmax = base_freq * (2 ** ((i*12+11)/12))  # Maximum frequency for the octave
 
         # Normalize the frequencies
-        fmin_normalized = fmin / sample_rate
-        fmax_normalized = fmax / sample_rate
+        fmin_normalized = fmin
+        fmax_normalized = fmax
 
         octave_ranges.append((fmin_normalized, fmax_normalized))
     return octave_ranges
@@ -162,17 +165,16 @@ ourFiltered_fm_signal = ourOctave_filter.apply_filter(fm_signal)
 # Sample rate and base frequency
 base_freq = 32.703*1  # Starting frequency of the first octave
 # Calculate octave ranges
-num_octaves = 5
-octave_ranges = calculate_octave_ranges(base_freq, num_octaves, 2000)
+num_octaves = 6
+octave_ranges = calculate_octave_ranges(base_freq, num_octaves, 8000)
 
 
 # Create a set of filters
-N = 100
-filters = [FIRFilter(N, fmin=fmin*N, fmax=fmax*N, padding_factor=9, fs=1) for fmin, fmax in octave_ranges]
+N = 1000
+filters = [FIRFilter(N, fmin=fmin, fmax=fmax, padding_factor=9, fs=8000) for fmin, fmax in octave_ranges]
 num_filters = len(filters)
 #filters = [FIRFilter(N, fmin=fmin*N, fmax=fmax*N, padding_factor=9) for fmin, fmax in octave_ranges]
 print(f"octave ranges: {octave_ranges}")
-
 # Calculate grid size
 total_subplots = num_filters
 rows, cols = calculate_grid_dimensions(total_subplots)
@@ -195,13 +197,14 @@ for i, filter in enumerate(filters):
 
 plt.tight_layout()
 plt.show(block=False)
+plt.savefig("freq_data.png", dpi=300, transparent=False)
 
 
 
-N = 100
-num_octaves = 5
-octave_ranges = calculate_octave_ranges(base_freq, num_octaves, 2000)
-filters = [FIRFilter(N, fmin=fmin*N, fmax=fmax*N, padding_factor=9, fs=8000) for fmin, fmax in octave_ranges]
+N = 1000
+num_octaves = 6
+octave_ranges = calculate_octave_ranges(base_freq, num_octaves, 1000)
+filters = [FIRFilter(N, fmin=fmin, fmax=fmax, padding_factor=9, fs=8000) for fmin, fmax in octave_ranges]
 num_filters = len(filters)
 # Generate the signal 5.2
 fs = 8000
@@ -217,18 +220,18 @@ zero_padding = np.zeros(int(fs*0.05))
 x = np.concatenate((x1, zero_padding, x2, zero_padding, x3))
 
 # Filter and plot the signal
-plt.figure(figsize=(20, 20))
-
+fig = plt.figure(figsize=(20, 20))
+plt.title('Filtered Signal with Filters', fontsize=fontsize+10, fontweight='bold')
 for i, filter in enumerate(filters):
     filtered_x = filter.process(x)
     filtered_sig = (filtered_x)
-
     plt.subplot(len(filters), 1, i+1)
     plt.plot(np.real(filtered_sig))
-    plt.title(f'Filtered Signal with Filter {i+1}', fontsize=5, fontweight='bold')
-    plt.xlabel('Sample t[s]', fontsize=5, fontweight='bold')
-    plt.ylabel('Amplitude', fontsize=5, fontweight='bold')
+    ax = plt.gca()
+    ax.set_ylim([-1.100, 1.100])
+    plt.ylabel('Amplitude', fontsize=fontsize, fontweight='bold') if i == (len(filters)//2) else None
 
-plt.tight_layout()
+plt.xlabel('Sample t[s]', fontsize=fontsize, fontweight='bold')
 plt.show(block=False)
+plt.savefig("time_data.png", dpi=300, transparent=False)
 input()
