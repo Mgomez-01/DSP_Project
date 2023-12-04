@@ -83,11 +83,11 @@ if mic_index == -1:
 # Sample rate and base frequency
 base_freq = 16.35159783*2  # Starting frequency of the first octave
 # Calculate octave ranges
-num_octaves = 7
-octave_ranges = calculate_octave_ranges(base_freq, num_octaves, 16000)
+num_octaves = 6
+octave_ranges = calculate_octave_ranges(base_freq, num_octaves, 8000)
 num_notes = 88
-note_ranges = calculate_note_ranges(base_freq, num_notes, 16000)
-N = 32
+note_ranges = calculate_note_ranges(base_freq, num_notes, 8000)
+N = 1000
 # Instantiate FIR filters for each octave
 filters = [FIRFilter(N, fmin=fmin, fmax=fmax, padding_factor=9, fs=8000) for fmin, fmax in octave_ranges]
 fig = plt.figure(figsize=(22, 22))
@@ -98,29 +98,32 @@ input()
 #sys.exit(1)
 
 #filters = [FIRFilter(N, fmin=fmin*N, fmax=fmax*N, padding_factor=9) for fmin, fmax in octave_ranges]
-#print(f"octave ranges: {octave_ranges}")
+print(f"octave ranges: {octave_ranges}")
 #print(f"note ranges: {note_ranges}")
 #sys.exit(1)
 # Define a decay time in seconds (adjust as needed)
-decay_time = 0.25  # half a second, for example
+decay_time = 0.01  # half a second, for example
 
 # Keep track of the last time a note was detected for each filter
 last_detection_times = [0] * len(filters)
 
-buffer_len = 512
+buffer_len = 1024
 stem_buffer = np.arange(1, buffer_len+1)
 # Initialize the plot
 plt.ion()  # Turn on interactive mode
 fig, ax = plt.subplots()
+fig2, ax2 = plt.subplots()
 octave_indices = np.arange(1, num_octaves+1)  # Octave indices (1-7)
 octave_values = np.zeros(num_octaves)
 filtered_data_vals = np.zeros(buffer_len)# Initial octave values
 stem_container = ax.stem(octave_indices, octave_values)
-stem_container2 = ax.stem(stem_buffer, filtered_data_vals)
+stem_container2 = ax2.stem(stem_buffer, filtered_data_vals)
 #ax.set_ylim(0, 1.5)  # Set the limits of the y-axis
 #ax.set_xlim(-2, 9)  # Set the limits of the y-axis
-ax.set_ylim([-1, 1])
-ax.set_xlim([0, 512])
+ax.set_ylim([0, 2])
+ax.set_xlim([0, 10])
+ax2.set_ylim([-1, 2])
+ax2.set_xlim([0, 1024])
 plt.plot(block=False)
 plt.pause(.01)
 def update_plot():
@@ -138,13 +141,16 @@ def update_plot():
         stem_container2.stemlines.set_segments([[[x, 0], [x, y]] for x, y in zip(stem_buffer, filtered_data_vals)])
 
         ax.draw_artist(ax.patch)
+        ax2.draw_artist(ax2.patch)
         ax.draw_artist(stem_container.markerline)
         ax.draw_artist(stem_container.stemlines)
-        ax.draw_artist(stem_container2.markerline)
-        ax.draw_artist(stem_container2.stemlines)
-
+        ax2.draw_artist(stem_container2.markerline)
+        ax2.draw_artist(stem_container2.stemlines)
         fig.canvas.update()
         fig.canvas.flush_events()
+        fig2.canvas.update()
+        fig2.canvas.flush_events()
+
 
 # def update_plot():
 #     if not octave_data_queue.empty() and not filtered_data_queue.empty():
@@ -178,8 +184,8 @@ def update_plot():
 #         plt.pause(1)  # Adjust sleep time as needed
 
 
-on_threshold = .001  # Threshold to turn the indicator on
-off_threshold = 0  # Threshold to turn the indicator off
+on_threshold = .55  # Threshold to turn the indicator on
+off_threshold = .45  # Threshold to turn the indicator off
 is_note_detected = [False] * num_notes  # State for each octave
 
 
@@ -188,7 +194,6 @@ def callback(in_data, frame_count, time_info, status):
     audio_data = np.frombuffer(in_data, dtype=np.float32)
     filtered_data = [filter.process(audio_data) for filter in filters]
     #print(f" audio_data len = {len(audio_data)}")
-    time.sleep(.001)
     # Check if the length of audio_data is less than the buffer length
     if len(audio_data) < buffer_len:
         # Pad audio_data to make its length equal to buffer_len
@@ -196,42 +201,80 @@ def callback(in_data, frame_count, time_info, status):
 
     # Rest of the processing remains the same
     filtered_data = [filter.process(audio_data) for filter in filters]
-    #print(f"audio_data len = {len(audio_data)}")
-    #print(f"filtered audio_data len = {len(filtered_data[0])}")
-    # filtered_data_vals = np.sum(filtered_data[n][0:1023],0:len(filtered_data)-1) 
     # Summing the first 1024 elements of each array in filtered_data
-    filtered_data_vals = audio_data#np.sum([arr[0:1023] for arr in filtered_data],axis=0)
-    #print(f"filtered_data: {filtered_data_vals}")
+    filtered_data_vals = audio_data
+    # np.sum([arr[0:1023] for arr in filtered_data],axis=0)
     # Plot a segment of audio data
-    # stem_container2[0].set_ydata(np.abs(filtered_data))
-    #plt.cla()
-    #plt.plot(filtered_data)
-    #plt.title("Harmonics in audio data")
-    #ax.set_ylim([0, 10])
-    #ax.set_xlim([0, 10])
-    #plt.show()
-    #print(f"len filt_data: {len(filtered_data)}")
     for i, data in enumerate(filtered_data):
-        if i == 0:
-            is_note_detected[i] = False
-            octave_values[i] = 0
-        if i >= 7:
+        max_abs_val = np.max(np.abs(data.real))
+        if max_abs_val == 0 or np.isnan(max_abs_val):
+            normed_data = data.real  # No normalization if max is 0 or nan
+        else:
+            normed_data = data.real / max_abs_val
+        current_time = time.time()
+        if i >= 6:
             break
         if is_note_detected[i]:
-            if np.max(np.abs(data)) < off_threshold:
-                #print(f"max data on filter {i} off: {np.max(np.abs(data))}")
+            print(f"i: {i}, normed_data max: {np.max(np.abs(normed_data.real))}, is_note_detected: {is_note_detected[i]}")
+            if (np.max(normed_data.real) < off_threshold):
+                print(f"last_detection_times[i]: {last_detection_times[i]}")
                 is_note_detected[i] = False
                 octave_values[i] = 0
         else:
-            if np.max(np.abs(data)) > on_threshold:
-                #print(f"max data on filter {i} on: {np.max(np.abs(data))}")
+            print(f"i: {i}, normed_data max: {np.max(np.abs(normed_data.real))}, is_note_detected: {is_note_detected[i]}")
+            if np.max(np.abs(normed_data.real)) > on_threshold:
+                last_detection_times[i] = current_time
                 is_note_detected[i] = True
                 octave_values[i] = 1
-    #print(f"Octave data: {octave_values}")
-    #print(f"Filtered data: {filtered_data_vals}")
     octave_data_queue.put(octave_values.copy())
     filtered_data_queue.put(filtered_data_vals.copy())
     return (in_data, pyaudio.paContinue)
+
+
+fig_test = plt.figure(figsize=(22,22))
+def callback_notime(in_data, frame_count, time_info, status):
+    audio_data = np.frombuffer(in_data, dtype=np.float32)
+    filtered_data = [filter.process(audio_data) for filter in filters]
+    time = np.arange(len(filtered_data[0]))
+    plt.cla()
+    for data in filtered_data:
+        plt.plot(time, data)
+    plt.xlabel('Time')  # Label for x-axis
+    plt.ylabel('Amplitude')  # Label for y-axis
+    plt.title('all data Filtered Data Over Time')  # Title of the plot
+    axes = plt.gca()
+    axes.set_ylim([-1, 1])
+    plt.show(block=False)
+
+    # Check if the length of audio_data is less than the buffer length
+    if len(audio_data) < buffer_len:
+        # Pad audio_data to make its length equal to buffer_len
+        audio_data = np.pad(audio_data, (0, buffer_len - len(audio_data)), 'constant')
+
+    filtered_data_vals = audio_data
+
+    for i, data in enumerate(filtered_data):
+        max_abs_val = np.max(np.abs(data.real))
+        if max_abs_val == 0 or np.isnan(max_abs_val):
+            normed_data = data.real  # No normalization if max is 0 or nan
+        else:
+            normed_data = data.real / max_abs_val
+
+        if i >= 6:
+            break
+
+        # Use threshold to set octave_values to 1 or 0
+        if np.max(np.abs(normed_data.real)) > on_threshold:
+            is_note_detected[i] = True
+            octave_values[i] = 1
+        else:
+            is_note_detected[i] = False
+            octave_values[i] = 0
+
+    octave_data_queue.put(octave_values.copy())
+    filtered_data_queue.put(filtered_data_vals.copy())
+    return (in_data, pyaudio.paContinue)
+
 
 
 # # Stream callback function
@@ -263,7 +306,7 @@ def audio_thread():
                      rate=sample_rate,
                      input=True,
                      input_device_index=mic_index,
-                     stream_callback=callback,
+                     stream_callback=callback_notime,
                      frames_per_buffer=buffer_len)
 
     stream.start_stream()
