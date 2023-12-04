@@ -69,11 +69,16 @@ for i in range(pa.get_device_count()):
         print(f"razr cam has mic, using index {i}")
         mic_index = i
         sample_rate = 16000  # for razer kiyo cam
+        on_threshold = .55  # Threshold to turn the indicator on
+        off_threshold = .45  # Threshold to turn the indicator off
+
         break
     if 'default' in dev['name']:
         mic_index = i
         print(f"sydef mic, using index {mic_index}")
         sample_rate = 48000  # for default mic in most systems
+        on_threshold = .25  # Threshold to turn the indicator on
+        off_threshold = .15  # Threshold to turn the indicator off
         break
 
 if mic_index == -1:
@@ -107,7 +112,7 @@ decay_time = 0.01  # half a second, for example
 # Keep track of the last time a note was detected for each filter
 last_detection_times = [0] * len(filters)
 
-buffer_len = 1024
+buffer_len = 1024*8
 stem_buffer = np.arange(1, buffer_len+1)
 # Initialize the plot
 plt.ion()  # Turn on interactive mode
@@ -123,8 +128,8 @@ stem_container2 = ax2.stem(stem_buffer, filtered_data_vals)
 ax.set_ylim([0, 2])
 ax.set_xlim([0, 10])
 ax2.set_ylim([-1, 2])
-ax2.set_xlim([0, 1024])
-plt.plot(block=False)
+ax2.set_xlim([0, buffer_len])
+plt.show(block=False)
 plt.pause(.01)
 def update_plot():
     if not octave_data_queue.empty() and not filtered_data_queue.empty():
@@ -184,8 +189,6 @@ def update_plot():
 #         plt.pause(1)  # Adjust sleep time as needed
 
 
-on_threshold = .55  # Threshold to turn the indicator on
-off_threshold = .45  # Threshold to turn the indicator off
 is_note_detected = [False] * num_notes  # State for each octave
 
 
@@ -231,7 +234,7 @@ def callback(in_data, frame_count, time_info, status):
     return (in_data, pyaudio.paContinue)
 
 
-fig_test = plt.figure(figsize=(22,22))
+fig_test, ax_test = plt.subplots(figsize=(22,22))
 def callback_notime(in_data, frame_count, time_info, status):
     audio_data = np.frombuffer(in_data, dtype=np.float32)
     filtered_data = [filter.process(audio_data) for filter in filters]
@@ -242,8 +245,7 @@ def callback_notime(in_data, frame_count, time_info, status):
     plt.xlabel('Time')  # Label for x-axis
     plt.ylabel('Amplitude')  # Label for y-axis
     plt.title('all data Filtered Data Over Time')  # Title of the plot
-    axes = plt.gca()
-    axes.set_ylim([-1, 1])
+    ax_test.set_ylim([-1, 1])
     plt.show(block=False)
 
     # Check if the length of audio_data is less than the buffer length
@@ -256,9 +258,10 @@ def callback_notime(in_data, frame_count, time_info, status):
     for i, data in enumerate(filtered_data):
         max_abs_val = np.max(np.abs(data.real))
         if max_abs_val == 0 or np.isnan(max_abs_val):
+            max_abs_val = 1
             normed_data = data.real  # No normalization if max is 0 or nan
         else:
-            normed_data = data.real / max_abs_val
+            normed_data = data.real
 
         if i >= 6:
             break
