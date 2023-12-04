@@ -194,14 +194,13 @@ for i, filter in enumerate(filters):
     plt.axvline(x=x, ymin=0, ymax=1, color='r', linestyle='--')
     plt.legend(['octave window', 'center'])
     plt.xticks([x])
+    ax = plt.gca()
+    ax.set_xlim([0, filter.fs/2])
 
 plt.tight_layout()
 plt.show(block=False)
-plt.savefig("freq_data.png", dpi=300, transparent=False)
-
-
-
-N = 1000
+plt.savefig("freq_data_2.png", dpi=300, transparent=False)
+plt.close()
 num_octaves = 6
 octave_ranges = calculate_octave_ranges(base_freq, num_octaves, 1000)
 filters = [FIRFilter(N, fmin=fmin, fmax=fmax, padding_factor=9, fs=8000) for fmin, fmax in octave_ranges]
@@ -211,27 +210,70 @@ fs = 8000
 t1 = np.linspace(0, 0.25, int(fs*0.25), endpoint=False)
 t2 = np.linspace(0.3, 0.55, int(fs*0.25), endpoint=False)
 t3 = np.linspace(0.6, 0.85, int(fs*0.25), endpoint=False)
+t_end = np.linspace(0.85, 1, int(fs*0.15), endpoint=False)
 
 x1 = np.cos(2*np.pi*220*t1)
 x2 = np.cos(2*np.pi*440*t2)
 x3 = np.cos(2*np.pi*880*t3) + np.cos(2*np.pi*1760*t3)
 
 zero_padding = np.zeros(int(fs*0.05))
-x = np.concatenate((x1, zero_padding, x2, zero_padding, x3))
-
+zeros_end = np.zeros(int(fs*0.15))
+x = np.concatenate((x1, zero_padding, x2, zero_padding, x3, zeros_end))
 # Filter and plot the signal
 fig = plt.figure(figsize=(20, 20))
 plt.title('Filtered Signal with Filters', fontsize=fontsize+10, fontweight='bold')
+plt.subplot(len(filters)+1, 1, 1)
+plt.plot(x)
+plt.ylabel('Input Signal x', fontsize=fontsize, fontweight='bold')
+
+ax.set_xlim([0, fs])
 for i, filter in enumerate(filters):
     filtered_x = filter.process(x)
     filtered_sig = (filtered_x)
-    plt.subplot(len(filters), 1, i+1)
+    plt.subplot(len(filters)+1, 1, i+2)
     plt.plot(np.real(filtered_sig))
     ax = plt.gca()
     ax.set_ylim([-1.100, 1.100])
+    ax.set_xlim([0, fs])
+    plt.tight_layout()
     plt.ylabel('Amplitude', fontsize=fontsize, fontweight='bold') if i == (len(filters)//2) else None
+
 
 plt.xlabel('Sample t[s]', fontsize=fontsize, fontweight='bold')
 plt.show(block=False)
 plt.savefig("time_data.png", dpi=300, transparent=False)
+plt.close()
+
+
+fig = plt.figure(figsize=(22, 16))
+
+mids = [(b+a)/2 for a, b in octave_ranges]
+x_fftd = np.fft.fft(x)
+
+# Plot each filter's response
+for i, filter in enumerate(filters):
+    # Calculate position
+    position = i * 2 + 1  # Position for frequency response plot
+    x = mids[i]
+
+    # Determine the width of the rectangle from the octave range
+    fmin, fmax = octave_ranges[i]
+    rect_width = fmax - fmin
+
+    filter.plot_filter(fig, num_filters+1, 1, i+1)
+    plt.axvline(x=x, ymin=0, ymax=1, color='r', linestyle='--')
+    
+    # Adding the shaded rectangle
+    plt.axvspan(x - rect_width/2, x + rect_width/2, ymin=0, ymax=1, alpha=0.3, color='blue')
+
+    plt.plot(x_fftd)
+    plt.legend(['octave window', 'center', 'filter pass band', 'signal_fft'], loc='upper right', bbox_to_anchor=(1, 1)) if i == 1 else None
+    plt.xticks([x])
+    ax = plt.gca()
+    ax.set_xlim([0, filter.fs/2])
+    plt.tight_layout()
+
+
+plt.show(block=False)
+plt.savefig("fft_freqdata.png", dpi=300, transparent=False)
 input()
