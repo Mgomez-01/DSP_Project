@@ -1,5 +1,3 @@
-
-
 from util.OctaveBandFilt import OctaveBandFilter, ourOctaveBandFilter
 from util.FIR_filter import FIRFilter
 import numpy as np
@@ -61,11 +59,6 @@ def windowed_sinc(filter_length, low_freq, high_freq):
     return bp_filter
 
 
-# Ben waz here
-# Ben waz not here
-# Ben waz here
-#Chase was here
-
 # Example usage
 filter_length = 150  # A typical length for FIR filters
 center_frequency = 220  # Center frequency in Hz
@@ -89,20 +82,6 @@ filtered_signal = octave_filter.apply_filter(test_signal)
 ourFiltered_signal = ourOctave_filter.apply_filter(test_signal)
 
 
-# print(f"filter_length: {filter_length}")
-# print(f"center_frequency: {center_frequency}")
-# print(f"sampling_frequency: {sampling_frequency}")
-# plt.figure(figsize=(10, 10))
-# plt.plot(range(0, len(test_signal)), test_signal, label="test_signal", color="blue")
-# plt.plot(range(0, len(filtered_signal)), filtered_signal, label="filtered_signal", color="red", linestyle="dashed")
-# plt.xlim(0, 100)
-# plt.title('Test Signal vs Filtered Signal')
-# plt.xlabel('Time')
-# plt.ylabel('Signal Amplitude')
-
-# plt.show()
-
-
 def generate_fm_signal(sampling_frequency, duration, start_freq, end_freq):
     """
     Generate a frequency modulated (FM) signal.
@@ -112,6 +91,7 @@ def generate_fm_signal(sampling_frequency, duration, start_freq, end_freq):
     phase = 2 * np.pi * np.cumsum(instantaneous_frequency) / sampling_frequency
     signal = np.sin(phase)
     return signal
+
 
 # Parameters for the OctaveBandFilter
 filter_length = 150
@@ -139,29 +119,6 @@ filtered_fm_signal = Octave_filter.apply_filter(fm_signal)
 # Filtering the FM signal
 ourFiltered_fm_signal = ourOctave_filter.apply_filter(fm_signal)
 
-# #Plotting the original and filtered signals
-# plt.figure(figsize=(12, 6))
-# plt.subplot(3, 1, 1)
-# plt.plot(fm_signal)
-# plt.title('Original Frequency Modulated Signal')
-# plt.xlabel('Sample')
-# plt.ylabel('Amplitude')
-
-# plt.subplot(3, 1, 2)
-# plt.plot(np.abs(ourFiltered_fm_signal))
-# plt.title('My Filtered Signal')
-# plt.xlabel('Sample')
-# plt.ylabel('Amplitude')
-
-
-# plt.subplot(3, 1, 3)
-# plt.plot(np.abs(filtered_fm_signal))
-# plt.title('Scipy Filtered Signal')
-# plt.xlabel('Sample')
-# plt.ylabel('Amplitude')
-
-# plt.tight_layout()
-# plt.show(block=False)
 # Sample rate and base frequency
 base_freq = 32.703*1  # Starting frequency of the first octave
 # Calculate octave ranges
