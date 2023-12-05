@@ -59,26 +59,30 @@ print(f"num devices: {devices}")
 if devices < 1:
     print(f"num of devices is {devices}. need at least one device")
     sys.exit(1)
-sample_rate = 48000  # Adjust as needed
+sample_rate = 44100  # Adjust as needed
 mic_index = -1
+this_device = None
 for i in range(pa.get_device_count()):
     dev = pa.get_device_info_by_index(i)
     print(f"Device {i}: {dev['name']}, Channels: {dev['maxInputChannels']}")
+    for key in dev.keys():
+        print(f"key: {key}val: {dev[key]}")
     # add a device name from the list that you have
     if 'Razer Kiyo' in dev['name']:
         print(f"razr cam has mic, using index {i}")
         mic_index = i
-        sample_rate = 16000  # for razer kiyo cam
-        on_threshold = .55  # Threshold to turn the indicator on
-        off_threshold = .45  # Threshold to turn the indicator off
-
+        sample_rate = 48000  # for razer kiyo cam
+        on_threshold = .2  # Threshold to turn the indicator on
+        off_threshold = .1  # Threshold to turn the indicator off
+        this_device = dev
         break
     if 'default' in dev['name']:
         mic_index = i
         print(f"sydef mic, using index {mic_index}")
         sample_rate = 48000  # for default mic in most systems
-        on_threshold = .25  # Threshold to turn the indicator on
-        off_threshold = .15  # Threshold to turn the indicator off
+        on_threshold = .2  # Threshold to turn the indicator on
+        off_threshold = .1  # Threshold to turn the indicator off
+        this_device = dev
         break
 
 if mic_index == -1:
@@ -86,18 +90,18 @@ if mic_index == -1:
     sys.exit(1)
 
 # Sample rate and base frequency
-base_freq = 16.35159783*2  # Starting frequency of the first octave
+base_freq = 16.35159783  # Starting frequency of the first octave
 # Calculate octave ranges
-num_octaves = 6
-octave_ranges = calculate_octave_ranges(base_freq, num_octaves, 8000)
+num_octaves = 8
+octave_ranges = calculate_octave_ranges(base_freq, num_octaves, sample_rate)
 num_notes = 88
-note_ranges = calculate_note_ranges(base_freq, num_notes, 8000)
-N = 1000
+note_ranges = calculate_note_ranges(base_freq, num_notes, sample_rate)
+N = 800
 # Instantiate FIR filters for each octave
-filters = [FIRFilter(N, fmin=fmin, fmax=fmax, padding_factor=9, fs=8000) for fmin, fmax in octave_ranges]
+filters = [FIRFilter(N, fmin=fmin, fmax=fmax, padding_factor=2, fs=sample_rate) for fmin, fmax in octave_ranges]
 fig = plt.figure(figsize=(22, 22))
-for i,filter in enumerate(filters):
-    filter.plot_filter(fig,len(filters)+1,1,i+1)
+for i, filter in enumerate(filters):
+    filter.plot_filter(fig, len(filters)+1, 1, i+1)
 plt.show()
 input()
 #sys.exit(1)
@@ -112,13 +116,13 @@ decay_time = 0.01  # half a second, for example
 # Keep track of the last time a note was detected for each filter
 last_detection_times = [0] * len(filters)
 
-buffer_len = 1024*8
+buffer_len = 1024<<2
 stem_buffer = np.arange(1, buffer_len+1)
 # Initialize the plot
 plt.ion()  # Turn on interactive mode
 fig, ax = plt.subplots()
 fig2, ax2 = plt.subplots()
-octave_indices = np.arange(1, num_octaves+1)  # Octave indices (1-7)
+octave_indices = np.arange(1, num_octaves+1)  # Octave indices
 octave_values = np.zeros(num_octaves)
 filtered_data_vals = np.zeros(buffer_len)# Initial octave values
 stem_container = ax.stem(octave_indices, octave_values)
@@ -131,6 +135,8 @@ ax2.set_ylim([-1, 2])
 ax2.set_xlim([0, buffer_len])
 plt.show(block=False)
 plt.pause(.01)
+
+
 def update_plot():
     if not octave_data_queue.empty() and not filtered_data_queue.empty():
         octave_values = octave_data_queue.get()
