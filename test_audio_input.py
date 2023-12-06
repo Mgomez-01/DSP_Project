@@ -42,7 +42,7 @@ def calculate_octave_ranges(base_freq, num_octaves, sample_rate):
     octave_ranges = []
     for i in range(num_octaves+1):
         fmin = base_freq * (2 ** i)  # Minimum frequency for the octave
-        fmax = base_freq * (2 ** ((i*12+11)/12))  # Maximum frequency for the octave
+        fmax = base_freq * (2 ** (i+1))  # Maximum frequency for the octave
 
         # Normalize the frequencies
         fmin_normalized = fmin
@@ -72,16 +72,16 @@ for i in range(pa.get_device_count()):
         print(f"razr cam has mic, using index {i}")
         mic_index = i
         sample_rate = 48000  # for razer kiyo cam
-        on_threshold = .2  # Threshold to turn the indicator on
-        off_threshold = .1  # Threshold to turn the indicator off
+        on_threshold = .1  # Threshold to turn the indicator on
+        off_threshold = .075  # Threshold to turn the indicator off
         this_device = dev
         break
     if 'default' in dev['name']:
         mic_index = i
         print(f"sydef mic, using index {mic_index}")
         sample_rate = 48000  # for default mic in most systems
-        on_threshold = .2  # Threshold to turn the indicator on
-        off_threshold = .1  # Threshold to turn the indicator off
+        on_threshold = .1  # Threshold to turn the indicator on
+        off_threshold = .075  # Threshold to turn the indicator off
         this_device = dev
         break
 
@@ -96,7 +96,7 @@ num_octaves = 8
 octave_ranges = calculate_octave_ranges(base_freq, num_octaves, sample_rate)
 num_notes = 88
 note_ranges = calculate_note_ranges(base_freq, num_notes, sample_rate)
-N = 800
+N = 600
 # Instantiate FIR filters for each octave
 filters = [FIRFilter(N, fmin=fmin, fmax=fmax, padding_factor=2, fs=sample_rate) for fmin, fmax in octave_ranges]
 fig = plt.figure(figsize=(22, 22))
@@ -241,17 +241,22 @@ def callback(in_data, frame_count, time_info, status):
 
 
 fig_test, ax_test = plt.subplots(figsize=(22,22))
+ax_test.set_ylim([-1, 1])
+plt.xlabel('Time')  # Label for x-axis
+plt.ylabel('Amplitude')  # Label for y-axis
+plt.title('all data Filtered Data Over Time')  # Title of the plot
+    
 def callback_notime(in_data, frame_count, time_info, status):
     audio_data = np.frombuffer(in_data, dtype=np.float32)
     filtered_data = [filter.process(audio_data) for filter in filters]
     time = np.arange(len(filtered_data[0]))
-    plt.cla()
-    for data in filtered_data:
-        plt.plot(time, data)
+    ax_test.clear()
+    ax_test.set_ylim([-1, 1])
     plt.xlabel('Time')  # Label for x-axis
     plt.ylabel('Amplitude')  # Label for y-axis
     plt.title('all data Filtered Data Over Time')  # Title of the plot
-    ax_test.set_ylim([-1, 1])
+    for data in filtered_data:
+        plt.plot(time, data)
     plt.show(block=False)
 
     # Check if the length of audio_data is less than the buffer length
@@ -259,8 +264,8 @@ def callback_notime(in_data, frame_count, time_info, status):
         # Pad audio_data to make its length equal to buffer_len
         audio_data = np.pad(audio_data, (0, buffer_len - len(audio_data)), 'constant')
 
+    #filtered_data_vals = audio_data
     filtered_data_vals = audio_data
-
     for i, data in enumerate(filtered_data):
         max_abs_val = np.max(np.abs(data.real))
         if max_abs_val == 0 or np.isnan(max_abs_val):
