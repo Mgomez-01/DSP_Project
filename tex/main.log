@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.5.31)  5 DEC 2023 20:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.8.5)  6 DEC 2023 00:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1027,47 +1027,52 @@ LaTeX Font Info:    Trying to load font information for U+rsfs on input line 81
 
 (/usr/share/texlive/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
-) [1
+)
+Overfull \hbox (7.91125pt too wide) in paragraph at lines 87--104
+ [][] 
+ []
+
+[1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<../images/freq_data.png, id=41, 1589.94pt x 1156.32pt>
+<../images/freq_data.png, id=41, 722.7pt x 722.7pt>
 File: ../images/freq_data.png Graphic file (type png)
 <use ../images/freq_data.png>
-Package pdftex.def Info: ../images/freq_data.png  used on input line 127.
-(pdftex.def)             Requested size: 512.1496pt x 372.48248pt.
+Package pdftex.def Info: ../images/freq_data.png  used on input line 128.
+(pdftex.def)             Requested size: 512.1496pt x 512.15016pt.
 
-Overfull \hbox (16.5026pt too wide) in paragraph at lines 127--128
+Overfull \hbox (16.5026pt too wide) in paragraph at lines 128--129
  []| [] 
  []
 
 [2 <../images/freq_data.png>]
-<../images/time_data.png, id=50, 1445.4pt x 1445.4pt>
+<../images/time_data.png, id=50, 722.7pt x 722.7pt>
 File: ../images/time_data.png Graphic file (type png)
 <use ../images/time_data.png>
-Package pdftex.def Info: ../images/time_data.png  used on input line 136.
-(pdftex.def)             Requested size: 483.69684pt x 483.6882pt.
+Package pdftex.def Info: ../images/time_data.png  used on input line 137.
+(pdftex.def)             Requested size: 483.69684pt x 483.69922pt.
  [3 <../images/time_data.png>]
 <../images/fft_freqdata.png, id=57, 1589.94pt x 1156.32pt>
 File: ../images/fft_freqdata.png Graphic file (type png)
 <use ../images/fft_freqdata.png>
-Package pdftex.def Info: ../images/fft_freqdata.png  used on input line 144.
+Package pdftex.def Info: ../images/fft_freqdata.png  used on input line 145.
 (pdftex.def)             Requested size: 483.69684pt x 351.78607pt.
 
 
-LaTeX Warning: Reference `define_freqs' on page 4 undefined on input line 151.
+LaTeX Warning: Reference `define_freqs' on page 4 undefined on input line 152.
 
 [4 <../images/fft_freqdata.png>]
 <../images/define_freqs.png, id=69, 415.5525pt x 302.93175pt>
 File: ../images/define_freqs.png Graphic file (type png)
 <use ../images/define_freqs.png>
-Package pdftex.def Info: ../images/define_freqs.png  used on input line 156.
+Package pdftex.def Info: ../images/define_freqs.png  used on input line 157.
 (pdftex.def)             Requested size: 483.69684pt x 352.62137pt.
  [5 <../images/define_freqs.png>]
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
 LaTeX Font Info:    Trying to load font information for T1+pcr on input line 16
-6.
+7.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
@@ -1085,12 +1090,12 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 3F8BF4D60C16F2D4FED7FC6BB4220E8B;561.
  ) 
 Here is how much of TeX's memory you used:
- 41187 strings out of 480171
- 913547 string characters out of 5894489
- 2190219 words of memory out of 5000000
- 58225 multiletter control sequences out of 15000+600000
- 483988 words of font info for 68 fonts, out of 8000000 for 9000
- 59 hyphenation exceptions out of 8191
+ 41188 strings out of 480129
+ 913557 string characters out of 5893410
+ 2190361 words of memory out of 5000000
+ 58232 multiletter control sequences out of 15000+600000
+ 484752 words of font info for 69 fonts, out of 8000000 for 9000
+ 81 hyphenation exceptions out of 8191
  103i,11n,105p,668b,2073s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc} </home/speedy/.te
 xlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk> </home/speedy/.
@@ -1107,7 +1112,7 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/courier/ucrr8a.pfb>
-Output written on main.pdf (12 pages, 3036046 bytes).
+Output written on main.pdf (12 pages, 492988 bytes).
 PDF statistics:
  788 PDF objects out of 1000 (max. 8388607)
  560 compressed objects within 6 object streams

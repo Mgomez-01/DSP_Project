@@ -84,26 +84,26 @@ University of Utah Electrical and Computer Engineering}
 This bit was taken care of in Matlab and this is the function to set up the filter bands table. The results are below and a copy of the code is included in appendix A:
 \begin{table}[!ht]
 \centering
-\begin{tabular}{|l|c|c|c|c|c|c|c|}
+\begin{tabular}{|l|c|c|c|c|c|c|c|c|}
 \hline
-val [units]   & $O_0$ & $O_1$ & $O_2$ & $O_3$ & $O_4$ & $O_5$ & $O_6$ \\
+val [units] & $O_1$  & $O_2$ & $O_3$ & $O_4$ & $O_5$ & $O_6$ & $O_7$ & $O_8$ \\
 \hline
-Lower (Hz)   & 65.406   & 130.81   & 261.63   & 523.25   & 1046.5   & 2093     & 4186    \\
+Lower (Hz)   & 32.703 & 65.406   & 130.81   & 261.63   & 523.25   & 1046.5   & 2093     & 4186    \\
 \hline
-Lower (Rad)  & 0.05137  & 0.10274  & 0.20548  & 0.41096  & 0.82192  & 1.6438   & 3.2877  \\
+Lower (Rad)  & 0.025685 & 0.05137  & 0.10274  & 0.20548  & 0.41096  & 0.82192  & 1.6438   & 3.2877  \\
 \hline
-Upper (Hz)   & 123.47   & 246.94   & 493.88   & 987.77   & 1975.5   & 3951.1   & 7902.1  \\
+Upper (Hz)   & 61.735 & 123.47   & 246.94   & 493.88   & 987.77   & 1975.5   & 3951.1   & 7902.1  \\
 \hline
-Upper (Rad)  & 0.096974 & 0.19395  & 0.3879   & 0.77579  & 1.5516   & 3.1032   & 6.2063  \\
+Upper (Rad) & 0.048487 & 0.096974 & 0.19395  & 0.3879   & 0.77579  & 1.5516   & 3.1032   & 6.2063  \\
 \hline
-Center (Hz)  & 94.439   & 188.88   & 377.75   & 755.51   & 1511     & 3022     & 6044.1  \\
+Center (Hz)  & 47.219 & 94.439   & 188.88   & 377.75   & 755.51   & 1511     & 3022     & 6044.1  \\
 \hline
-Center (Rad) & 0.074172 & 0.14834  & 0.29669  & 0.59338  & 1.1868   & 2.3735   & 4.747   \\
+Center (Rad) & 0.037086 & 0.074172 & 0.14834  & 0.29669  & 0.59338  & 1.1868   & 2.3735   & 4.747   \\
 \hline
 \end{tabular}
-\caption{Frequency Ranges for Octaves 0 to 6 starting with $C_2$}
+\caption{Frequency Ranges for Octaves 1 to 8 starting with $O_1$}
 \end{table}
-Since we have a limit on the bands we can recognize that arises from the use of the sampling freq of $8kHz$, we can only obtain unique detection for the set of Octaves whose frequencies are below the Nyquist rate of $\frac{fs}{2}$ or $4kHz$. Or, $O_5$ in the table above.
+Since we have a limit on the bands we can recognize that arises from the use of the sampling freq of $8kHz$, we can only obtain unique detection for the set of Octaves whose frequencies are below the Nyquist rate of $\frac{fs}{2}$ or $4kHz$. Or, $O_7$ in the table above.
 
 \section*{5.2 Octave Filter Bank}
  Comment on the selectivity of the bandpass filters, i.e., use the frequency response (passbands and stopbands) to explain how the filter passes one octave while rejecting the others. Are the filter’s passbands narrow enough so that only one octave lies in the passband and the others are in
@@ -114,9 +114,10 @@ The band pass filter bank was put together in python and has the added benefit o
   \[
     x(t) =
     \begin{cases}
-      \cos{(440\pi t)} & 0.0 < t \le 0.25 , \\
-      \cos{(1760\pi t)} & 0.3 < t \le 0.55 , \\
-      \cos{(880\pi t)} + \cos{(1760\pi t)} & 0.60 < t \le 0.85
+      \ \ \ \ \ \ \ \ \ \ \cos{(2\pi\cdot 220 t)} & 0.0 < t \le 0.25 , \\
+      \ \ \ \ \ \ \ \ \ \ \cos{(2\pi\cdot 880 t)} & 0.3 < t \le 0.55 , \\
+      \cos{(2\pi\cdot 440 t)} + \cos{(2\pi\cdot 880 t)} & 0.60 < t \le 0.85\\
+      \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0\ \ & \text{otherwise}
     \end{cases}
     \]
 \end{center}
