@@ -146,6 +146,20 @@ Filters one and two do not pass anything since they are both too low to capture 
   \label{fig:bandpass_regions}
 \end{figure}
 In this figure, it is easier to see that the band-pass filters correctly capture the frequencies that we see in the time plot of fig. \ref{fig:time_data}. In the figure above fig. \ref{fig:bandpass_regions}, we can see that the filters that do not capture any signal do not have an overlapping note peak in the shaded region. However, the ones that we see with a signal passed through them do have a corresponding note in the shaded band-pass region. 
+
+\subsection{Creating the FIR Filters}
+To create the FIR filters, we used a python class shown in subsection /ref{app_sub_FIR_create}. The class works by first defining N, the number of points to be used in the FIR filter. We then declare the pass band region, the frequencies we wish for the FIR filter to pass through while the others are rejected. This is shown in figure /ref{define_freqs}. Effectively, we are specifying the desired frequency response of the FIR filter but only using N number of points to define the filter in the frequency domain.
+
+\newpage
+\begin{figure}[h!]
+  \centering
+  \hspace*{-1.5cm}\includegraphics[width=17cm]{../define_freqs.png}
+  \caption{Band-pass region of the FIR filter being created. The filter response is specified by N number of points where N is the length of the FIR filter being created.}
+  \label{fig:define_freqs}
+\end{figure}
+
+After defining the frequency response with N number of points, we need to also ensure that the frequency response is symmetric about the y-axis. This ensures that our FIR filter will be purely real. To obtain the time domain FIR filter, we then take the inverse fourier transform of the N number of points specifying the frequency response. The FIR filter corresponding to the frequency response shown in /ref{define_freqs} 
+
 \newpage
 \section*{Appendix A}
 \subsection{Matlab Code}
@@ -413,6 +427,7 @@ plt.savefig("fft_freqdata.png", dpi=300, transparent=False)
 input()
 \end{lstlisting}
 \subsection{Python FIR Filter Class}
+\label{app_sub_FIR_create}
 \begin{lstlisting}[language=Python]
 import numpy as np
 from numpy import zeros, append
