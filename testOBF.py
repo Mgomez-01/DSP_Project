@@ -62,18 +62,19 @@ print(f"midpoints_no_overlap: {mids1}")
 for i, filter in enumerate(filters):
     # Calculate position
     position = i * 2 + 1  # Position for frequency response plot
-    x = mids[i]
+    x = mids1[i]
     filter.plot_filter(fig, num_filters+1, 1, i+1)
     plt.axvline(x=x, ymin=0, ymax=1, color='r', linestyle='--')
     if i == 0:
         plt.legend(['octave window', 'center'])
     plt.xticks([x])
+    plt.yticks([0, .5, 1])
     ax = plt.gca()
     ax.set_xlim([0, filter.fs/2])
 
-plt.tight_layout(pad=2.0)
+plt.tight_layout()
 plt.show(block=False)
-plt.savefig("images/post_lock_freq_data.png", dpi=100, transparent=False)
+plt.savefig("images/post_lock_freq_data.png", dpi=200, transparent=False)
 plt.close()
 
 num_octaves = 6
@@ -88,8 +89,8 @@ t3 = np.linspace(0.6, 0.85, int(fs*0.25), endpoint=False)
 t_end = np.linspace(0.85, 1, int(fs*0.15), endpoint=False)
 
 x1 = np.cos(2*np.pi*220*t1)
-x2 = np.cos(2*np.pi*440*t2)
-x3 = np.cos(2*np.pi*880*t3) + np.cos(2*np.pi*1760*t3)
+x2 = np.cos(2*np.pi*880*t2)
+x3 = np.cos(2*np.pi*440*t3) + np.cos(2*np.pi*1760*t3)
 
 zero_padding = np.zeros(int(fs*0.05))
 zeros_end = np.zeros(int(fs*0.15))
@@ -107,7 +108,7 @@ ax.set_xlim([0, 1])
 for i, filter in enumerate(filters):
     filtered_x = filter.process(x)
     t = np.linspace(0, 1, len(filtered_x), endpoint=False)
-    filtered_sig = (filtered_x)
+    filtered_sig = filtered_x
     plt.subplot(len(filters)+1, 1, i+2)
     plt.plot(t, np.real(filtered_sig))
     ax = plt.gca()
@@ -118,8 +119,8 @@ for i, filter in enumerate(filters):
 
 
 plt.xlabel('Sample t[s]', fontsize=fontsize, fontweight='bold')
-plt.show(block=False)
-plt.savefig("images/post_lock_time_data.png", dpi=100, transparent=False)
+plt.show()#block=False)
+plt.savefig("images/post_lock_time_data.png", dpi=200, transparent=False)
 plt.close()
 
 
@@ -140,14 +141,15 @@ for i, filter in enumerate(filters):
     # Adding the shaded rectangle
     plt.axvspan(x - rect_width/2, x + rect_width/2, ymin=0, ymax=1, alpha=0.3, color='blue')
 
-    plt.plot(x_fftd)
-    plt.legend(['octave window', 'center', 'filter pass band', 'signal_fft'], loc='upper right', bbox_to_anchor=(1, 1)) if i == 1 else None
+    plt.plot(x_fftd/max(x_fftd))
+    plt.legend(['octave window', 'center', 'filter pass band', 'signal_fft'], fontsize=10, loc='upper right', bbox_to_anchor=(1, 1)) if i == 1 else None
     plt.xticks([x])
     ax = plt.gca()
     ax.set_xlim([0, filter.fs/2])
+    ax.set_ylabel("Octave Detected", fontsize=10) if i >= 2 and i < 6 and i != 3 else ax.set_ylabel(" ", fontsize=10)
     plt.tight_layout(pad=2.0)
 
 
 plt.show(block=False)
-plt.savefig("images/post_lock_fft_freqdata.png", dpi=100, transparent=False)
+plt.savefig("images/post_lock_fft_freqdata.png", dpi=200, transparent=False)
 plt.close()
