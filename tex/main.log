@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.8.5)  6 DEC 2023 00:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.8.5)  7 DEC 2023 01:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1035,44 +1035,48 @@ Overfull \hbox (7.91125pt too wide) in paragraph at lines 87--104
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<../images/freq_data.png, id=41, 722.7pt x 722.7pt>
-File: ../images/freq_data.png Graphic file (type png)
-<use ../images/freq_data.png>
-Package pdftex.def Info: ../images/freq_data.png  used on input line 128.
+<../images/post_lock_freq_data.png, id=41, 722.7pt x 722.7pt>
+File: ../images/post_lock_freq_data.png Graphic file (type png)
+<use ../images/post_lock_freq_data.png>
+Package pdftex.def Info: ../images/post_lock_freq_data.png  used on input line 
+128.
 (pdftex.def)             Requested size: 512.1496pt x 512.15016pt.
 
 Overfull \hbox (16.5026pt too wide) in paragraph at lines 128--129
  []| [] 
  []
 
-[2 <../images/freq_data.png>]
-<../images/time_data.png, id=50, 722.7pt x 722.7pt>
-File: ../images/time_data.png Graphic file (type png)
-<use ../images/time_data.png>
-Package pdftex.def Info: ../images/time_data.png  used on input line 137.
+<../images/post_lock_time_data.png, id=44, 722.7pt x 722.7pt>
+File: ../images/post_lock_time_data.png Graphic file (type png)
+<use ../images/post_lock_time_data.png>
+Package pdftex.def Info: ../images/post_lock_time_data.png  used on input line 
+136.
 (pdftex.def)             Requested size: 483.69684pt x 483.69922pt.
- [3 <../images/time_data.png>]
-<../images/fft_freqdata.png, id=57, 1589.94pt x 1156.32pt>
-File: ../images/fft_freqdata.png Graphic file (type png)
-<use ../images/fft_freqdata.png>
-Package pdftex.def Info: ../images/fft_freqdata.png  used on input line 145.
-(pdftex.def)             Requested size: 483.69684pt x 351.78607pt.
 
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-LaTeX Warning: Reference `define_freqs' on page 4 undefined on input line 152.
+[2 <../images/post_lock_freq_data.png>] [3 <../images/post_lock_time_data.png>]
+<../images/post_lock_fft_freqdata.png, id=57, 1589.94pt x 1156.32pt>
+File: ../images/post_lock_fft_freqdata.png Graphic file (type png)
+<use ../images/post_lock_fft_freqdata.png>
+Package pdftex.def Info: ../images/post_lock_fft_freqdata.png  used on input li
+ne 144.
+(pdftex.def)             Requested size: 426.79134pt x 310.39323pt.
 
-[4 <../images/fft_freqdata.png>]
+LaTeX Warning: Reference `define_freqs' on page 4 undefined on input line 151.
+
+[4 <../images/post_lock_fft_freqdata.png>]
 <../images/define_freqs.png, id=69, 415.5525pt x 302.93175pt>
 File: ../images/define_freqs.png Graphic file (type png)
 <use ../images/define_freqs.png>
-Package pdftex.def Info: ../images/define_freqs.png  used on input line 157.
+Package pdftex.def Info: ../images/define_freqs.png  used on input line 156.
 (pdftex.def)             Requested size: 483.69684pt x 352.62137pt.
  [5 <../images/define_freqs.png>]
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
 LaTeX Font Info:    Trying to load font information for T1+pcr on input line 16
-7.
+6.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
@@ -1091,8 +1095,8 @@ Package rerunfilecheck Info: File `main.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  41188 strings out of 480129
- 913557 string characters out of 5893410
- 2190361 words of memory out of 5000000
+ 913767 string characters out of 5893410
+ 2190368 words of memory out of 5000000
  58232 multiletter control sequences out of 15000+600000
  484752 words of font info for 69 fonts, out of 8000000 for 9000
  81 hyphenation exceptions out of 8191
@@ -1112,9 +1116,9 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/courier/ucrr8a.pfb>
-Output written on main.pdf (12 pages, 492988 bytes).
+Output written on main.pdf (12 pages, 954054 bytes).
 PDF statistics:
- 788 PDF objects out of 1000 (max. 8388607)
+ 789 PDF objects out of 1000 (max. 8388607)
  560 compressed objects within 6 object streams
  380 named destinations out of 1000 (max. 500000)
  65 words of extra memory for PDF output out of 10000 (max. 10000000)

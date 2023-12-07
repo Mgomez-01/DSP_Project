@@ -125,16 +125,15 @@ The band pass filter bank was put together in python and has the added benefit o
 and now the code to do this along with the plot showing the data is what we expect:\\  
 \begin{figure}[h!]
   \centering
-  \hspace*{-1.5cm}\includegraphics[width=18cm]{../images/freq_data.png}
+  \hspace*{-1.5cm}\includegraphics[width=18cm]{../images/post_lock_freq_data.png}
   \caption{plot for all BPF's}
   \label{fig:bandpass}
 \end{figure}
 \newline
 The filters above in fig. \ref{fig:bandpass} begin at a center of $47Hz$ but we only need to worry about the subsequent ones that we were asked for. Aligned at their centers is a vertical line and a tick mark indicating the center frequency. this bank of filters is what we will use to pass the time data created in the equation above. 
-\newpage
 \begin{figure}[h!]
   \centering
-  \hspace*{-1.5cm}\includegraphics[width=17cm]{../images/time_data.png}
+  \hspace*{-1.5cm}\includegraphics[width=17cm]{../images/post_lock_time_data.png}
   \caption{plot for all BPF's processing the time data at the top}
   \label{fig:time_data}
 \end{figure}
@@ -142,7 +141,7 @@ Filters one and two do not pass anything since they are both too low to capture 
 \newpage
 \begin{figure}[h!]
   \centering
-  \hspace*{-1.5cm}\includegraphics[width=17cm]{../images/fft_freqdata.png}
+  \hspace*{-1.5cm}\includegraphics[width=15cm]{../images/post_lock_fft_freqdata.png}
   \caption{plot for all BPF's bandpass regions}
   \label{fig:bandpass_regions}
 \end{figure}

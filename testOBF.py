@@ -119,7 +119,7 @@ for i, filter in enumerate(filters):
 
 
 plt.xlabel('Sample t[s]', fontsize=fontsize, fontweight='bold')
-plt.show()#block=False)
+plt.show(block=False)
 plt.savefig("images/post_lock_time_data.png", dpi=200, transparent=False)
 plt.close()
 
