@@ -81,7 +81,7 @@ for i in range(pa.get_device_count()):
         print(f"sydef mic, using index {mic_index}")
         sample_rate = 48000  # for default mic in most systems
         on_threshold = .3  # Threshold to turn the indicator on
-        off_threshold = .075  # Threshold to turn the indicator off
+        off_threshold = .1  # Threshold to turn the indicator off
         this_device = dev
         break
 
@@ -92,16 +92,18 @@ if mic_index == -1:
 # Sample rate and base frequency
 base_freq = 16.35159783  # Starting frequency of the first octave
 # Calculate octave ranges
-num_octaves = 8
+num_octaves = 7
 octave_ranges = calculate_octave_ranges(base_freq, num_octaves, sample_rate)
 num_notes = 88
 note_ranges = calculate_note_ranges(base_freq, num_notes, sample_rate)
-N = 600
+N = 1000
 # Instantiate FIR filters for each octave
-filters = [FIRFilter(N, fmin=fmin, fmax=fmax, padding_factor=2, fs=sample_rate) for fmin, fmax in octave_ranges]
+filters = [FIRFilter(N, fmin=fmin, fmax=fmax, padding_factor=2, fs=8000) for fmin, fmax in octave_ranges]
 fig = plt.figure(figsize=(22, 22))
 for i, filter in enumerate(filters):
     filter.plot_filter(fig, len(filters)+1, 1, i+1)
+    plt.tight_layout(pad=2)
+    
 plt.show()
 input()
 #sys.exit(1)
@@ -122,8 +124,10 @@ stem_buffer = np.arange(1, buffer_len+1)
 plt.ion()  # Turn on interactive mode
 fig, ax = plt.subplots()
 fig2, ax2 = plt.subplots()
-octave_indices = np.arange(1, num_octaves+1)  # Octave indices
-octave_values = np.zeros(num_octaves)
+octave_indices = np.arange(0, num_octaves+1)  # Octave indices
+octave_values = np.zeros(num_octaves+1)
+print(f"len(octave_values): {len(octave_values)}")
+print(f"len(octave_indices): {len(octave_indices)}")
 filtered_data_vals = np.zeros(buffer_len)# Initial octave values
 stem_container = ax.stem(octave_indices, octave_values)
 stem_container2 = ax2.stem(stem_buffer, filtered_data_vals)
@@ -245,7 +249,7 @@ ax_test.set_ylim([-1, 1])
 plt.xlabel('Time')  # Label for x-axis
 plt.ylabel('Amplitude')  # Label for y-axis
 plt.title('all data Filtered Data Over Time')  # Title of the plot
-    
+gain = 2
 def callback_notime(in_data, frame_count, time_info, status):
     audio_data = np.frombuffer(in_data, dtype=np.float32)
     filtered_data = [filter.process(audio_data) for filter in filters]
@@ -267,22 +271,35 @@ def callback_notime(in_data, frame_count, time_info, status):
     #filtered_data_vals = audio_data
     filtered_data_vals = audio_data
     for i, data in enumerate(filtered_data):
-        max_abs_val = np.max(np.abs(data.real))
+        max_abs_val = np.max((data.real))
+        min_abs_val = np.min((data.real))
         if max_abs_val == 0 or np.isnan(max_abs_val):
             max_abs_val = 1
-            normed_data = data.real  # No normalization if max is 0 or nan
+            normed_data = data.real/max_abs_val  # No normalization if max is 0 or nan
+        elif max_abs_val <= .5:
+            normed_data = 2*data.real/max_abs_val
         else:
-            normed_data = data.real
+            normed_data = data.real/max_abs_val
 
-        if i >= 6:
-            break
+        if min_abs_val == 0:
+            power = 0
+        else:
+            power = 100*(max_abs_val - min_abs_val)
+
+        on_threshold = 50  # Threshold to turn the indicator on
 
         # Use threshold to set octave_values to 1 or 0
-        if np.max(np.abs(normed_data.real)) > on_threshold:
+        #print(f"max: {max_abs_val}")
+        #print(f"min: {min_abs_val}")
+        if power > on_threshold:
             is_note_detected[i] = True
             octave_values[i] = 1
         else:
             is_note_detected[i] = False
+            #print(f"i: {i}")
+            #print(f"len(filters): {len(filtered_data)}")
+            #print(f"len(octave_values): {len(octave_values)}")
+            
             octave_values[i] = 0
 
     octave_data_queue.put(octave_values.copy())

@@ -60,6 +60,7 @@ class FIRFilter:
             # ax1.legend(['Hamming'], prop={'size': 5})
             ax1.set_xlabel('Frequency [Hz]', fontsize=10, fontweight='bold')
             ax1.set_ylabel('Magnitude', fontsize=10, fontweight='bold')
+        ax1.set_xlim([0, self.fs/2])
         ax1.grid(True)
 
     def plot_filter1(self):
