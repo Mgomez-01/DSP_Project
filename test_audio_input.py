@@ -72,15 +72,15 @@ for i in range(pa.get_device_count()):
         print(f"razr cam has mic, using index {i}")
         mic_index = i
         sample_rate = 48000  # for razer kiyo cam
-        on_threshold = .1  # Threshold to turn the indicator on
-        off_threshold = .075  # Threshold to turn the indicator off
+        on_threshold = .3  # Threshold to turn the indicator on
+        off_threshold = .1  # Threshold to turn the indicator off
         this_device = dev
         break
     if 'default' in dev['name']:
         mic_index = i
         print(f"sydef mic, using index {mic_index}")
         sample_rate = 48000  # for default mic in most systems
-        on_threshold = .1  # Threshold to turn the indicator on
+        on_threshold = .3  # Threshold to turn the indicator on
         off_threshold = .075  # Threshold to turn the indicator off
         this_device = dev
         break
