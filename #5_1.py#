@@ -1,0 +1,24 @@
+import numpy as np
+
+fs = 8000
+A4 = 440
+C4 = A4 * np.power(2, -9/12)
+B4 = A4 * np.power(2, 2/12)
+
+Octaves = np.array([1/16, 1/8, 1/4, 1/2, 1, 2, 4, 8])
+Cs = C4 * Octaves
+Bs = B4 * Octaves
+
+Centers = (Cs + Bs) / 2
+
+w_Cs = Cs * 2 * np.pi / fs
+w_Bs = Bs * 2 * np.pi / fs
+w_Centers = Centers * 2 * np.pi / fs
+
+print(f"fs: {fs}")
+print(f"Octaves: {Octaves}")
+print(f"Centers: {Centers}")
+print(f"Cs: {Cs}")
+print(f"Bs: {Bs}")
+
+
