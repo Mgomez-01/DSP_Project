@@ -17,7 +17,7 @@ from numpy.fft import fftshift, fft, ifft
 L = 100
 f1 = FIRFilter(L,0.11,0.14,9,1)
 # f1 = FIRFilter(L,0.11,0.3,9,1)
-f1.plot_filter2()
+f1.plot_filter1()
 
 N = 201
 x = [0]*N
