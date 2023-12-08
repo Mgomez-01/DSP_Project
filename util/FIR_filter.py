@@ -47,11 +47,6 @@ class FIRFilter:
 
     def apply_hamming_window(self):
         self.h_ham = self.h * 0.5 * (1 + np.cos(2 * np.pi * (self.pos - self.N / 2) / self.N))
-# =============================================================================
-#         Below is the hamming function from the assignment, It doesn't quite work so we're using the one above,
-#         The line above also works for a wide bandwidth passband instead of at a single frequency point "wc"
-# =============================================================================
-        # self.h_ham = self.h*(0.54-0.46*np.cos(2*np.pi*self.pos/(self.N-1)))*np.cos((self.fmin+self.fmax)/2*(self.pos-(self.N-1)/2))
         self.h_ham_pad = append(self.h_ham, zeros(self.padding_factor * self.N))
         self.H_ham_pad = fftshift(fft(self.h_ham_pad)) / self.N
 
