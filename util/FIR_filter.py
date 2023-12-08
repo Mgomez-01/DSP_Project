@@ -1,8 +1,14 @@
+# =============================================================================
+# FIR_Filter Class
+#
+# This class is used to create a filter object
+# The filter object constructs an FIR filter with a given 
+# =============================================================================
+
 import numpy as np
 from numpy import zeros, append
 from numpy.fft import fftshift, fft
 import matplotlib.pyplot as plt
-
 
 class FIRFilter:
     def __init__(self, N=10000, fmin=3, fmax=7, padding_factor=9, fs=8000, passing=True):
