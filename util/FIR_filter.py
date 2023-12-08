@@ -70,17 +70,27 @@ class FIRFilter:
         NP = self.N + self.padding_factor * self.N  # Find length of padded signal
         self.h_pad = append(self.h, zeros(self.padding_factor * self.N))  # Append zeros
         self.H_pad = fftshift(fft(self.h_pad)) / self.N  # Take FFT of padded time domain FIR filter
-        k = np.arange(-NP/2, NP/2)  # 
-        self.w_pad = k * self.fs / NP
+        k = np.arange(-NP/2, NP/2)  # Create frequency array to plot padded frequency response against
+        self.w_pad = k * self.fs / NP # Scale frequency response to the sample rate
 
+    # This function applies a hamming window to h[n] by multiplying h[n] by the 
+    #   hamming window funciton in the time domain
     def apply_hamming_window(self):
+        # Apply hamming window
         self.h_ham = self.h * 0.5 * (1 + np.cos(2 * np.pi * (self.pos - self.N / 2) / self.N))
+        # Add padding for plotting frequency response
         self.h_ham_pad = append(self.h_ham, zeros(self.padding_factor * self.N))
+        # Find frequency response by taking fft of padded hamming windowed FIR filter
         self.H_ham_pad = fftshift(fft(self.h_ham_pad)) / self.N
 
+    # This functions applies the created FIR filter to an input signal.
+    #   This is just a convolution but scales the output by N, the length of the FIR
+    #   filter, to maintain proper scaling
     def process(self, input_data):
         return np.convolve(input_data, self.h_ham)/self.N
 
+    # One of two plotting fucntions, for a general view of the performance of a
+    #   created filter, I would personally use the other plotting function
     def plot_filter(self, fig, row, col, pos):
         # Frequency Response Plot
         ax1 = fig.add_subplot(row, col, pos)
@@ -96,6 +106,7 @@ class FIRFilter:
         ax1.set_xlim([0, self.fs/2])
         ax1.grid(True)
 
+    # Plotting function, Use this to check the filter created performs as intended
     def plot_filter1(self):
         # MatPlotLib plotting
         fig = plt.figure(figsize=(22, 16))
