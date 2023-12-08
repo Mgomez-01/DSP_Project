@@ -36,7 +36,6 @@
     "textcomp"
     "circuitikz"
     "tikz"
-    "enumitem"
     "karnaugh-map"
     "bytefield"
     "mathrsfs"
@@ -44,6 +43,7 @@
     "algorithm2e"
     "hyperref"
     "my_styles"
+    "enumitem"
     "environ")
    (TeX-add-symbols
     '("tab" ["argument"] 0)
@@ -60,8 +60,6 @@
     "fig:define_freqs"
     "app_sub_FIR_create")
    (LaTeX-add-environments
-    '("eqnsection" 2))
-   (LaTeX-add-enumitem-newlists
-    '("myenumerate" "enumerate")))
+    '("eqnsection" 2)))
  :latex)
 

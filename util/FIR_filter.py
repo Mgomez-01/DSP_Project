@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 
 class FIRFilter:
-    def __init__(self, N=10000, fmin=3, fmax=7, padding_factor=9, fs=8000):
+    def __init__(self, N=10000, fmin=3, fmax=7, padding_factor=9, fs=8000, passing=True):
         self.N = N
         self.padding_factor = padding_factor
         self.fs = fs  # Sampling rate
@@ -14,6 +14,7 @@ class FIRFilter:
         self.pos = np.arange(N)
         self.fmin = fmin*self.N/self.fs
         self.fmax = fmax*self.N/self.fs
+        self.passing = passing
         
         self.h = None
         self.h_pad = None
@@ -30,7 +31,11 @@ class FIRFilter:
     def create_filter(self):
         k = np.arange(-int(self.N/2), int(self.N/2))
         self.w = k * self.fs / self.N  # Adjusted to use actual frequency values
-        self.H = np.where((np.abs(k) >= self.fmin) & (np.abs(k) <= self.fmax), 1, 0)
+        if self.passing:
+            self.H = np.where((np.abs(k) >= self.fmin) & (np.abs(k) <= self.fmax), 1, 0)
+        else:
+            self.H = np.where((np.abs(k) >= self.fmin) & (np.abs(k) <= self.fmax), 0, 1)
+
         self.h = fftshift(fft(fftshift(self.H)))
 
     def apply_padding(self):

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.8.5)  7 DEC 2023 01:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.5.31)  7 DEC 2023 17:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -667,15 +667,6 @@ zlibraryfpu.code.tex
 )
 (/usr/share/texlive/texmf-dist/tex/generic/circuitikz/pgfcirccurrent.tex)
 (/usr/share/texlive/texmf-dist/tex/generic/circuitikz/pgfcircflow.tex))
-(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty
-Package: enumitem 2019/06/20 v3.9 Customized lists
-\labelindent=\skip99
-\enit@outerparindent=\dimen293
-\enit@toks=\toks48
-\enit@inbox=\box69
-\enit@count@id=\count346
-\enitdp@description=\count347
-)
 (/usr/share/texlive/texmf-dist/tex/latex/karnaugh-map/karnaugh-map.sty
 Package: karnaugh-map 2022/01/15 v2.0 Draw Karnaugh Maps
 
@@ -694,15 +685,15 @@ Package: expl3 2022-01-21 L3 programming layer (loader)
 
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count348
-\l__pdf_internal_box=\box70
+\l__color_backend_stack_int=\count346
+\l__pdf_internal_box=\box69
 ))
 Package: xparse 2022-01-12 L3 Experimental document command parser
 )
 (/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.sty
 (/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.tex
-\integerpart=\count349
-\decimalpart=\count350
+\integerpart=\count347
+\decimalpart=\count348
 )
 Package: xstring 2021/07/21 v1.84 String manipulations (CT)
 )
@@ -710,45 +701,45 @@ Package: xstring 2021/07/21 v1.84 String manipulations (CT)
 zlibrarymatrix.code.tex
 File: tikzlibrarymatrix.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 )
-\@karnaughmap@var@colorindex@=\count351
-\@karnaughmap@var@colorindexnext@=\count352
+\@karnaughmap@var@colorindex@=\count349
+\@karnaughmap@var@colorindexnext@=\count350
 )
 (/usr/share/texlive/texmf-dist/tex/latex/bytefield/bytefield.sty
 Package: bytefield 2021/08/17 v2.7 Network protocol diagrams
 
 (/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count353
-\calc@Bcount=\count354
-\calc@Adimen=\dimen294
-\calc@Bdimen=\dimen295
-\calc@Askip=\skip100
-\calc@Bskip=\skip101
+\calc@Acount=\count351
+\calc@Bcount=\count352
+\calc@Adimen=\dimen293
+\calc@Bdimen=\dimen294
+\calc@Askip=\skip99
+\calc@Bskip=\skip100
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count355
-\calc@Cskip=\skip102
+\calc@Ccount=\count353
+\calc@Cskip=\skip101
 )
-\bytefield@height=\skip103
-\bytefield@height@increment=\skip104
-\entire@bytefield@picture=\box71
-\bf@bitwidth=\skip105
-\bf@bitheight=\skip106
-\units@wide=\skip107
-\units@tall=\skip108
-\units@high=\skip109
-\header@xpos=\skip110
-\c@header@val=\count356
-\c@max@header@val=\count357
-\curly@box=\box72
-\wordlabelr@start=\skip111
-\wordlabelr@end=\skip112
-\wordlabell@start=\skip113
-\wordlabell@end=\skip114
-\total@lbox@width=\skip115
-\label@box@width=\skip116
-\label@box@height=\skip117
-\word@label@box=\box73
+\bytefield@height=\skip102
+\bytefield@height@increment=\skip103
+\entire@bytefield@picture=\box70
+\bf@bitwidth=\skip104
+\bf@bitheight=\skip105
+\units@wide=\skip106
+\units@tall=\skip107
+\units@high=\skip108
+\header@xpos=\skip109
+\c@header@val=\count354
+\c@max@header@val=\count355
+\curly@box=\box71
+\wordlabelr@start=\skip110
+\wordlabelr@end=\skip111
+\wordlabell@start=\skip112
+\wordlabell@end=\skip113
+\total@lbox@width=\skip114
+\label@box@width=\skip115
+\label@box@height=\skip116
+\word@label@box=\box72
 )
 (/usr/share/texlive/texmf-dist/tex/latex/jknapltx/mathrsfs.sty
 Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
@@ -759,12 +750,12 @@ Package: cancel 2013/04/12 v2.2 Cancel math terms
 )
 (/usr/share/texlive/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
 Package: algorithm2e 2017/07/18 v5.2 algorithms environments
-\c@AlgoLine=\count358
-\algocf@hangindent=\skip118
+\c@AlgoLine=\count356
+\algocf@hangindent=\skip117
 
 (/usr/share/texlive/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
 Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
-\c@checkoddpage=\count359
+\c@checkoddpage=\count357
 )
 (/usr/share/texlive/texmf-dist/tex/latex/tools/xspace.sty
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
@@ -772,41 +763,41 @@ Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 (/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
 Package: relsize 2013/03/29 ver 4.1
 )
-\skiptotal=\skip119
-\skiplinenumber=\skip120
-\skiprule=\skip121
-\skiphlne=\skip122
-\skiptext=\skip123
-\skiplength=\skip124
-\algomargin=\skip125
-\skipalgocfslide=\skip126
-\algowidth=\dimen296
-\inoutsize=\dimen297
-\inoutindent=\dimen298
-\interspacetitleruled=\dimen299
-\interspacealgoruled=\dimen300
-\interspacetitleboxruled=\dimen301
-\algocf@ruledwidth=\skip127
-\algocf@inoutbox=\box74
-\algocf@inputbox=\box75
-\AlCapSkip=\skip128
-\AlCapHSkip=\skip129
-\algoskipindent=\skip130
-\algocf@nlbox=\box76
-\algocf@hangingbox=\box77
-\algocf@untilbox=\box78
-\algocf@skipuntil=\skip131
-\algocf@capbox=\box79
-\algocf@lcaptionbox=\skip132
-\algoheightruledefault=\skip133
-\algoheightrule=\skip134
-\algotitleheightruledefault=\skip135
-\algotitleheightrule=\skip136
-\c@algocfline=\count360
-\c@algocfproc=\count361
-\c@algocf=\count362
-\algocf@algoframe=\box80
-\algocf@algobox=\box81
+\skiptotal=\skip118
+\skiplinenumber=\skip119
+\skiprule=\skip120
+\skiphlne=\skip121
+\skiptext=\skip122
+\skiplength=\skip123
+\algomargin=\skip124
+\skipalgocfslide=\skip125
+\algowidth=\dimen295
+\inoutsize=\dimen296
+\inoutindent=\dimen297
+\interspacetitleruled=\dimen298
+\interspacealgoruled=\dimen299
+\interspacetitleboxruled=\dimen300
+\algocf@ruledwidth=\skip126
+\algocf@inoutbox=\box73
+\algocf@inputbox=\box74
+\AlCapSkip=\skip127
+\AlCapHSkip=\skip128
+\algoskipindent=\skip129
+\algocf@nlbox=\box75
+\algocf@hangingbox=\box76
+\algocf@untilbox=\box77
+\algocf@skipuntil=\skip130
+\algocf@capbox=\box78
+\algocf@lcaptionbox=\skip131
+\algoheightruledefault=\skip132
+\algoheightrule=\skip133
+\algotitleheightruledefault=\skip134
+\algotitleheightrule=\skip135
+\c@algocfline=\count358
+\c@algocfproc=\count359
+\c@algocf=\count360
+\algocf@algoframe=\box79
+\algocf@algobox=\box80
 )
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2021-06-07 v7.00m Hypertext links for LaTeX
@@ -840,9 +831,9 @@ Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
 (/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 )
-\@linkdim=\dimen302
-\Hy@linkcounter=\count363
-\Hy@pagecounter=\count364
+\@linkdim=\dimen301
+\Hy@linkcounter=\count361
+\Hy@pagecounter=\count362
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2021-06-07 v7.00m Hyperref: PDFDocEncoding definition (HO)
@@ -859,7 +850,7 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 (/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
-\Hy@SavedSpaceFactor=\count365
+\Hy@SavedSpaceFactor=\count363
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2021-06-07 v7.00m Hyperref: PDF Unicode definition (HO)
@@ -873,9 +864,9 @@ Package hyperref Info: Plain pages OFF on input line 4207.
 Package hyperref Info: Backreferencing OFF on input line 4212.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4445.
-\c@Hy@tempcnt=\count366
+\c@Hy@tempcnt=\count364
 LaTeX Info: Redefining \url on input line 4804.
-\XeTeXLinkMargin=\dimen303
+\XeTeXLinkMargin=\dimen302
 
 (/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
@@ -884,9 +875,9 @@ Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count367
-\Field@Width=\dimen304
-\Fld@charsize=\dimen305
+\Fld@menulength=\count365
+\Field@Width=\dimen303
+\Fld@charsize=\dimen304
 Package hyperref Info: Hyper figures OFF on input line 6076.
 Package hyperref Info: Link nesting OFF on input line 6081.
 Package hyperref Info: Hyper index ON on input line 6084.
@@ -901,9 +892,9 @@ LaTeX Info: Redefining \pageref on input line 6150.
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count368
-\c@Item=\count369
-\c@Hfootnote=\count370
+\Hy@abspage=\count366
+\c@Item=\count367
+\c@Hfootnote=\count368
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 
@@ -915,8 +906,8 @@ Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
 kage
 with kernel methods
 )
-\Fld@listcount=\count371
-\c@bookmark@seq@number=\count372
+\Fld@listcount=\count369
+\c@bookmark@seq@number=\count370
 
 (/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
@@ -927,7 +918,7 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 86.
 )
-\Hy@SectionHShift=\skip137
+\Hy@SectionHShift=\skip136
 )
 (./my_styles.sty
 
@@ -935,49 +926,54 @@ LaTeX Warning: You have requested package `my_styles',
                but the package provides `mystyles'.
 
 Package: mystyles 
-) (/usr/share/texlive/texmf-dist/tex/latex/environ/environ.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2019/06/20 v3.9 Customized lists
+\labelindent=\skip137
+\enit@outerparindent=\dimen305
+\enit@toks=\toks48
+\enit@inbox=\box81
+\enit@count@id=\count371
+\enitdp@description=\count372
+)
+(/usr/share/texlive/texmf-dist/tex/latex/environ/environ.sty
 Package: environ 2014/05/04 v0.3 A new way to define environments
 
 (/usr/share/texlive/texmf-dist/tex/latex/trimspaces/trimspaces.sty
 Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 ))
-\c@myenumeratei=\count373
-\c@myenumerateii=\count374
-\enitdp@myenumerate=\count375
-
 (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count376
+\scratchcounter=\count373
 \scratchdimen=\dimen306
 \scratchbox=\box82
-\nofMPsegments=\count377
-\nofMParguments=\count378
+\nofMPsegments=\count374
+\nofMParguments=\count375
 \everyMPshowfont=\toks49
-\MPscratchCnt=\count379
+\MPscratchCnt=\count376
 \MPscratchDim=\dimen307
-\MPnumerator=\count380
-\makeMPintoPDFobject=\count381
+\MPnumerator=\count377
+\makeMPintoPDFobject=\count378
 \everyMPtoPDFconversion=\toks50
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -988,8 +984,8 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\c@lstlisting=\count382
-Package hyperref Info: Link coloring OFF on input line 79.
+\c@lstlisting=\count379
+Package hyperref Info: Link coloring OFF on input line 80.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -1000,126 +996,273 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count383
+\c@section@level=\count380
 )
-LaTeX Info: Redefining \ref on input line 79.
-LaTeX Info: Redefining \pageref on input line 79.
-LaTeX Info: Redefining \nameref on input line 79.
+LaTeX Info: Redefining \ref on input line 80.
+LaTeX Info: Redefining \pageref on input line 80.
+LaTeX Info: Redefining \nameref on input line 80.
 
 (./main.out) (./main.out)
 \@outlinefile=\write4
 \openout4 = `main.out'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 81.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 82.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 81.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 82.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 81
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 82
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-Overfull \hbox (7.91125pt too wide) in paragraph at lines 87--104
+./main.tex:86: Missing \endcsname inserted.
+<to be read again> 
+                   \let 
+l.86   \item \alph  \\
+                      
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+./main.tex:86: Missing number, treated as zero.
+<to be read again> 
+                   \c@ 
+l.86   \item \alph  \\
+                      
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+
+./main.tex:86: LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.86   \item \alph  \\
+                      
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./main.tex:86: Extra \endcsname.
+<recently read> \endcsname 
+                           
+l.86   \item \alph  \\
+                      
+I'm ignoring this, since I wasn't doing a \csname.
+
+./main.tex:87: Missing \endcsname inserted.
+<to be read again> 
+                   \let 
+l.87   \item \alph  \\
+                      
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+./main.tex:87: Missing number, treated as zero.
+<to be read again> 
+                   \c@ 
+l.87   \item \alph  \\
+                      
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+
+./main.tex:87: LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.87   \item \alph  \\
+                      
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./main.tex:87: Extra \endcsname.
+<recently read> \endcsname 
+                           
+l.87   \item \alph  \\
+                      
+I'm ignoring this, since I wasn't doing a \csname.
+
+./main.tex:88: Missing \endcsname inserted.
+<to be read again> 
+                   \let 
+l.88   \item \alph  \\
+                      
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+./main.tex:88: Missing number, treated as zero.
+<to be read again> 
+                   \c@ 
+l.88   \item \alph  \\
+                      
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+
+./main.tex:88: LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.88   \item \alph  \\
+                      
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./main.tex:88: Extra \endcsname.
+<recently read> \endcsname 
+                           
+l.88   \item \alph  \\
+                      
+I'm ignoring this, since I wasn't doing a \csname.
+
+
+Overfull \hbox (7.91125pt too wide) in paragraph at lines 97--114
  [][] 
  []
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<../images/post_lock_freq_data.png, id=41, 722.7pt x 722.7pt>
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
+<../images/post_lock_freq_data.png, id=35, 722.7pt x 722.7pt>
 File: ../images/post_lock_freq_data.png Graphic file (type png)
 <use ../images/post_lock_freq_data.png>
 Package pdftex.def Info: ../images/post_lock_freq_data.png  used on input line 
-128.
+137.
 (pdftex.def)             Requested size: 512.1496pt x 512.15016pt.
 
-Overfull \hbox (16.5026pt too wide) in paragraph at lines 128--129
+Overfull \hbox (16.5026pt too wide) in paragraph at lines 137--138
  []| [] 
  []
 
-<../images/post_lock_time_data.png, id=44, 722.7pt x 722.7pt>
+
+LaTeX Warning: Reference `fig:bandpass' on page 3 undefined on input line 142.
+
+<../images/post_lock_time_data.png, id=37, 722.7pt x 722.7pt>
 File: ../images/post_lock_time_data.png Graphic file (type png)
 <use ../images/post_lock_time_data.png>
 Package pdftex.def Info: ../images/post_lock_time_data.png  used on input line 
-136.
+145.
 (pdftex.def)             Requested size: 483.69684pt x 483.69922pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[2 <../images/post_lock_freq_data.png>] [3 <../images/post_lock_time_data.png>]
-<../images/post_lock_fft_freqdata.png, id=57, 1589.94pt x 1156.32pt>
+[3 <../images/post_lock_freq_data.png>] [4 <../images/post_lock_time_data.png>]
+<../images/post_lock_fft_freqdata.png, id=51, 1589.94pt x 1156.32pt>
 File: ../images/post_lock_fft_freqdata.png Graphic file (type png)
 <use ../images/post_lock_fft_freqdata.png>
 Package pdftex.def Info: ../images/post_lock_fft_freqdata.png  used on input li
-ne 144.
+ne 153.
 (pdftex.def)             Requested size: 426.79134pt x 310.39323pt.
 
-LaTeX Warning: Reference `define_freqs' on page 4 undefined on input line 151.
+LaTeX Warning: Reference `fig:time_data' on page 5 undefined on input line 157.
 
-[4 <../images/post_lock_fft_freqdata.png>]
-<../images/define_freqs.png, id=69, 415.5525pt x 302.93175pt>
+
+
+LaTeX Warning: Reference `fig:bandpass_regions' on page 5 undefined on input li
+ne 157.
+
+
+LaTeX Warning: Reference `app_sub_FIR_create' on page 5 undefined on input line
+ 160.
+
+
+LaTeX Warning: Reference `fig:define_freqs' on page 5 undefined on input line 1
+60.
+
+[5 <../images/post_lock_fft_freqdata.png>]
+<../images/define_freqs.png, id=59, 415.5525pt x 302.93175pt>
 File: ../images/define_freqs.png Graphic file (type png)
 <use ../images/define_freqs.png>
-Package pdftex.def Info: ../images/define_freqs.png  used on input line 156.
+Package pdftex.def Info: ../images/define_freqs.png  used on input line 165.
 (pdftex.def)             Requested size: 483.69684pt x 352.62137pt.
- [5 <../images/define_freqs.png>]
+
+
+LaTeX Warning: Reference `fig:define_freqs' on page 6 undefined on input line 1
+70.
+
+[6 <../images/define_freqs.png>]
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
-LaTeX Font Info:    Trying to load font information for T1+pcr on input line 16
-6.
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 17
+5.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-)
+) [7]
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
-) [6] [7]
-[8] [9] [10] [11] [12]
+) [8] [9]
+[10] [11] [12]
 This exam contains 0 questions with 0 parts, 0 subparts, and 0 subsubparts.
+
+Class exam Warning: Point totals have changed. Rerun to get point totals right.
+
+
 (./main.aux)
 
 LaTeX Warning: There were undefined references.
 
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 3F8BF4D60C16F2D4FED7FC6BB4220E8B;561.
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `main.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `main.out':
+(rerunfilecheck)             Before: D41D8CD98F00B204E9800998ECF8427E;0
+(rerunfilecheck)             After:  EE917FD7878E99CA3C90A267BD927DF3;1859.
  ) 
 Here is how much of TeX's memory you used:
- 41188 strings out of 480129
- 913767 string characters out of 5893410
- 2190368 words of memory out of 5000000
- 58232 multiletter control sequences out of 15000+600000
- 484752 words of font info for 69 fonts, out of 8000000 for 9000
- 81 hyphenation exceptions out of 8191
- 103i,11n,105p,668b,2073s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41064 strings out of 480171
+ 911734 string characters out of 5894489
+ 2112120 words of memory out of 5000000
+ 58177 multiletter control sequences out of 15000+600000
+ 485093 words of font info for 70 fonts, out of 8000000 for 9000
+ 59 hyphenation exceptions out of 8191
+ 103i,11n,105p,668b,2012s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc} </home/speedy/.te
 xlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk> </home/speedy/.
 texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </home/speedy
-/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/spee
-dy/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/sp
-eedy/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/
-speedy/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </hom
-e/speedy/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
-rw/courier/ucrr8a.pfb>
-Output written on main.pdf (12 pages, 954054 bytes).
+/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/spee
+dy/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/sp
+eedy/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk> </home/
+speedy/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </hom
+e/speedy/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </h
+ome/speedy/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/urw/courier/ucrr8a.pfb>
+Output written on main.pdf (12 pages, 955121 bytes).
 PDF statistics:
- 789 PDF objects out of 1000 (max. 8388607)
- 560 compressed objects within 6 object streams
- 380 named destinations out of 1000 (max. 500000)
- 65 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 700 PDF objects out of 1000 (max. 8388607)
+ 454 compressed objects within 5 object streams
+ 303 named destinations out of 1000 (max. 500000)
+ 33 words of extra memory for PDF output out of 10000 (max. 10000000)
 

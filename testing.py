@@ -32,7 +32,7 @@ f_ref_C1 = 32.70  # Frequency of C1 in Hz
 # note_names = [notes[position % 12] for position in semitone_positions]
 
 # print(f"note_names: {note_names}")
-filter = FIRFilter(N=100, fmin=1000, fmax=2000, padding_factor=1, fs=8000)
+filter = FIRFilter(N=100, fmin=1000, fmax=2000, padding_factor=1, fs=8000, passing=False)
 
 filter.plot_filter1()
 fig = plt.figure(figsize=(22,22))
