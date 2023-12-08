@@ -1,8 +1,17 @@
 # =============================================================================
 # FIR_Filter Class
 #
-# This class is used to create a filter object
-# The filter object constructs an FIR filter with a given 
+# This class is used to create a bandpass filter object
+# The filter object constructs an FIR filter from the given inputs:
+#   
+#   N               --> Number of points constructing the FIR filter
+#   fmin            --> Minimum frequency to be passed
+#   fmax            --> Maximum frequency of bandpass region
+#   padding_factor  --> Determines how many zeros are appended to the time
+#                       domain FIR filter when plotting the frequency response
+#   fs              --> Sampling frequency
+#   passing         --> Boolean value determines if filter will be band pass or
+#                       a band-reject filter
 # =============================================================================
 
 import numpy as np
@@ -15,40 +24,53 @@ class FIRFilter:
         self.N = N
         self.padding_factor = padding_factor
         self.fs = fs  # Sampling rate
-        self.H = zeros(N)
-        self.w = zeros(N)
-        self.pos = np.arange(N)
-        self.fmin = fmin*self.N/self.fs
-        self.fmax = fmax*self.N/self.fs
-        self.passing = passing
+        self.H = zeros(N)   # H[k], The specified frequency domain used to create h[n]
+        self.w = zeros(N)   # frequency array, used for plotting H[k] in the frequency domain
+        self.pos = np.arange(N)     # array of "n" values, used for plotting h[n] in the time domain
+        self.fmin = fmin*self.N/self.fs     # Minimum frequency of pass-band region
+        self.fmax = fmax*self.N/self.fs     # Maximum frequency of pass-band region
+        self.passing = passing  # Boolean value, turns the filter from band-pass to band-reject if false
         
-        self.h = None
-        self.h_pad = None
-        self.H_pad = None
-        self.w_pad = None
-        self.h_ham = None
-        self.H_ham_pad = None
+        self.h = None   # array for storing time domain FIR filter
+        self.h_pad = None   # Time domain FIR filter padded with extra zeros, used to plot FIR frequency response
+        self.H_pad = None   # Frequency doman of h_pad, the padded time domain FIR filter
+        self.w_pad = None   # Frequency array for plotting against the padded FIR filter frequency response
+        self.h_ham = None   # FIR filter h[n], but modified with a hamming window
+        self.H_ham_pad = None   # Frequency response of the FIR filter modified with a hamming window
         
         self.create_filter()
         self.apply_padding()
         self.apply_hamming_window()
 
-
+    # Creates the FIR filter by specifying specific values in the frequency
+    #   domain, if "k" is within the desired passband, H[k]=1, else, H[k]=0
+    #   After H[k] is specified, the FIR filter is obtained by taking the fft
+    #   of H[k]. Both H[k] and h[n] are of length N.
     def create_filter(self):
-        k = np.arange(-int(self.N/2), int(self.N/2))
-        self.w = k * self.fs / self.N  # Adjusted to use actual frequency values
+        k = np.arange(-int(self.N/2), int(self.N/2))    # Create array of k values of length N
+        self.w = k * self.fs / self.N  # Create frequency array from -Fs/2 to Fs/2
+        # If "k" is within the passband, set H[k] to 1, else 0
         if self.passing:
             self.H = np.where((np.abs(k) >= self.fmin) & (np.abs(k) <= self.fmax), 1, 0)
+        # If passing is false, do the opposite, this turns the bandpass filter to band-reject
         else:
             self.H = np.where((np.abs(k) >= self.fmin) & (np.abs(k) <= self.fmax), 0, 1)
-
+        # Take the FFT of the specified frequency response H[k] to create h[n], the FIR filter in the time domain
         self.h = fftshift(fft(fftshift(self.H)))
 
+    # The FIR fitler is only N points long, therefore, to find the true frequency response, we need
+    #   to find the effect of convoluting the FIR filter with a signal much longer than N points.
+    #   To do this, we can append many zeros to the time domain FIR filter h[n], and take the fft of
+    #   that padded filter to find the true frequency response. NP is the lgnth of the padded FIR
+    #
+    #   NP = N + padding_factor*N
+    #
+    #   If padding_factor = 9, the padded signal will be length 10*N
     def apply_padding(self):
-        NP = self.N + self.padding_factor * self.N
-        self.h_pad = append(self.h, zeros(self.padding_factor * self.N))
-        self.H_pad = fftshift(fft(self.h_pad)) / self.N
-        k = np.arange(-NP/2, NP/2)
+        NP = self.N + self.padding_factor * self.N  # Find length of padded signal
+        self.h_pad = append(self.h, zeros(self.padding_factor * self.N))  # Append zeros
+        self.H_pad = fftshift(fft(self.h_pad)) / self.N  # Take FFT of padded time domain FIR filter
+        k = np.arange(-NP/2, NP/2)  # 
         self.w_pad = k * self.fs / NP
 
     def apply_hamming_window(self):
