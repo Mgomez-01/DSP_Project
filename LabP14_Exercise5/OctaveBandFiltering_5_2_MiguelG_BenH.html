@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-12-07 Thu 19:30 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="Miguel Gomez" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org0f7d277">1. Python Code section 5</a>
+<ul>
+<li><a href="#org3c3f364">1.1. 5.2 Filter creation class</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0f7d277" class="outline-2">
+<h2 id="org0f7d277"><span class="section-number-2">1.</span> Python Code section 5</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org3c3f364" class="outline-3">
+<h3 id="org3c3f364"><span class="section-number-3">1.1.</span> 5.2 Filter creation class</h3>
+<div class="outline-text-3" id="text-1-1">
+<div class="org-src-container">
+<pre class="src src-python"># =============================================================================
+# FIR_Filter Class
+# Orignally written by Benjamin Hayes,
+# Turned into a class by Miguel Gomez.
+#
+# This class is used to create a bandpass filter object
+# The filter object constructs an FIR filter from the given inputs:
+#   
+#   N               --&gt; Number of points constructing the FIR filter
+#   fmin            --&gt; Minimum frequency to be passed
+#   fmax            --&gt; Maximum frequency of bandpass region
+#   padding_factor  --&gt; Determines how many zeros are appended to the time
+#                       domain FIR filter when plotting the frequency response
+#   fs              --&gt; Sampling frequency
+#   passing         --&gt; Boolean value determines if filter will be band pass or
+#                       a band-reject filter
+# =============================================================================
+
+import numpy as np
+from numpy import zeros, append
+from numpy.fft import fftshift, fft
+import matplotlib.pyplot as plt
+
+class FIRFilter:
+    def __init__(self, N=10000, fmin=3, fmax=7, padding_factor=9, fs=8000, passing=True):
+	self.N = N
+	self.padding_factor = padding_factor
+	self.fs = fs  # Sampling rate
+	self.H = zeros(N)   # H[k], The specified frequency domain used to create h[n]
+	self.w = zeros(N)   # frequency array, used for plotting H[k] in the frequency domain
+	self.pos = np.arange(N)     # array of "n" values, used for plotting h[n] in the time domain
+	self.fmin = fmin*self.N/self.fs     # Minimum frequency of pass-band region
+	self.fmax = fmax*self.N/self.fs     # Maximum frequency of pass-band region
+	self.passing = passing  # Boolean value, turns the filter from band-pass to band-reject if false
+
+	self.h = None   # array for storing time domain FIR filter
+	self.h_pad = None   # Time domain FIR filter padded with extra zeros, used to plot FIR frequency response
+	self.H_pad = None   # Frequency doman of h_pad, the padded time domain FIR filter
+	self.w_pad = None   # Frequency array for plotting against the padded FIR filter frequency response
+	self.h_ham = None   # FIR filter h[n], but modified with a hamming window
+	self.H_ham_pad = None   # Frequency response of the FIR filter modified with a hamming window
+
+	self.create_filter()
+	self.apply_padding()
+	self.apply_hamming_window()
+
+    # Creates the FIR filter by specifying specific values in the frequency
+    #   domain, if "k" is within the desired passband, H[k]=1, else, H[k]=0
+    #   After H[k] is specified, the FIR filter is obtained by taking the fft
+    #   of H[k]. Both H[k] and h[n] are of length N.
+    def create_filter(self):
+	k = np.arange(-int(self.N/2), int(self.N/2))    # Create array of k values of length N
+	self.w = k * self.fs / self.N  # Create frequency array from -Fs/2 to Fs/2
+	# If "k" is within the passband, set H[k] to 1, else 0
+	if self.passing:
+	    self.H = np.where((np.abs(k) &gt;= self.fmin) &amp; (np.abs(k) &lt;= self.fmax), 1, 0)
+	# If passing is false, do the opposite, this turns the bandpass filter to band-reject
+	else:
+	    self.H = np.where((np.abs(k) &gt;= self.fmin) &amp; (np.abs(k) &lt;= self.fmax), 0, 1)
+	# Take the FFT of the specified frequency response H[k] to create h[n], the FIR filter in the time domain
+	self.h = fftshift(fft(fftshift(self.H)))
+
+    # The FIR fitler is only N points long, therefore, to find the true frequency response, we need
+    #   to find the effect of convoluting the FIR filter with a signal much longer than N points.
+    #   To do this, we can append many zeros to the time domain FIR filter h[n], and take the fft of
+    #   that padded filter to find the true frequency response. NP is the lgnth of the padded FIR
+    #
+    #   NP = N + padding_factor*N
+    #
+    #   If padding_factor = 9, the padded signal will be length 10*N
+    def apply_padding(self):
+	NP = self.N + self.padding_factor * self.N  # Find length of padded signal
+	self.h_pad = append(self.h, zeros(self.padding_factor * self.N))  # Append zeros
+	self.H_pad = fftshift(fft(self.h_pad)) / self.N  # Take FFT of padded time domain FIR filter
+	k = np.arange(-NP/2, NP/2)  # Create frequency array to plot padded frequency response against
+	self.w_pad = k * self.fs / NP # Scale frequency response to the sample rate
+
+    # This function applies a hamming window to h[n] by multiplying h[n] by the 
+    #   hamming window funciton in the time domain
+    def apply_hamming_window(self):
+	# Apply hamming window
+	self.h_ham = self.h * 0.5 * (1 + np.cos(2 * np.pi * (self.pos - self.N / 2) / self.N))
+	# Add padding for plotting frequency response
+	self.h_ham_pad = append(self.h_ham, zeros(self.padding_factor * self.N))
+	# Find frequency response by taking fft of padded hamming windowed FIR filter
+	self.H_ham_pad = fftshift(fft(self.h_ham_pad)) / self.N
+
+    # This functions applies the created FIR filter to an input signal.
+    #   This is just a convolution but scales the output by N, the length of the FIR
+    #   filter, to maintain proper scaling
+    def process(self, input_data):
+	return np.convolve(input_data, self.h_ham)/self.N
+
+    # One of two plotting fucntions, for a general view of the performance of a
+    #   created filter, I would personally use the other plotting function
+    def plot_filter(self, fig, row, col, pos):
+	# Frequency Response Plot
+	ax1 = fig.add_subplot(row, col, pos)
+	# ax1.scatter(self.w, self.H.real, c='b', s=150)
+	# ax1.plot(self.w_pad, abs(self.H_pad), 'r')
+	ax1.plot(self.w_pad, abs(self.H_ham_pad), 'black')
+	#ax1.set_xlim(0, .5)
+	ax1.set_title(f'Frequency Response of Octave Filter {pos}', fontsize=10, fontweight='bold')
+	if pos == row-1:
+	    # ax1.legend(['Hamming'], prop={'size': 5})
+	    ax1.set_xlabel('Frequency [Hz]', fontsize=10, fontweight='bold')
+	    ax1.set_ylabel('Magnitude', fontsize=10, fontweight='bold')
+	ax1.set_xlim([0, self.fs/2])
+	ax1.grid(True)
+
+    # Plotting function, Use this to check the filter created performs as intended
+    def plot_filter1(self):
+	# MatPlotLib plotting
+	fig = plt.figure(figsize=(22, 16))
+
+	# Frequency Response Plot
+	ax1 = fig.add_subplot(211)
+	ax1.scatter(self.w, self.H.real, c='b', s=150)
+	ax1.plot(self.w_pad, abs(self.H_pad), 'r')
+	ax1.plot(self.w_pad, abs(self.H_ham_pad), 'black')
+	ax1.set_xlabel('Frequency (Hz)', fontsize=10, fontweight='bold')
+	ax1.set_ylabel('Magnitude', fontsize=10, fontweight='bold')
+	ax1.set_title('Frequency Response of FIR Filter', fontsize=10, fontweight='bold')
+	ax1.legend(['Ideal', 'Actual', 'Hamming'], prop={'size': 15})
+	ax1.tick_params(axis='both', labelsize=15)
+	ax1.grid(True)
+
+	# Time Domain Plot
+	ax2 = fig.add_subplot(212)
+	ax2.vlines(self.pos, 0, self.h.real, 'b')
+	ax2.scatter(self.pos, self.h.real, c='b', s=150)
+	# ax2.scatter(self.pos, self.h.imag, c='r', s=150)
+	ax2.set_xlabel('Position', fontsize=10, fontweight='bold')
+	ax2.set_ylabel('Value (Unscaled)', fontsize=10, fontweight='bold')
+	ax2.set_title('Time Domain FIR Filter', fontsize=10, fontweight='bold')
+	# ax2.legend(['Real', 'Imag'], prop={'size': 15})
+	ax2.tick_params(axis='both', labelsize=15)
+	ax2.grid(True)
+
+	plt.show(block=False)
+</pre>
+</div>
+
+<pre class="example">
+None
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Miguel Gomez</p>
+<p class="date">Created: 2023-12-07 Thu 19:30</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
