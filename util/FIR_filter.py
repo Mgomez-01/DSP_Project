@@ -1,5 +1,7 @@
 # =============================================================================
 # FIR_Filter Class
+# Orignally written by Benjamin Hayes,
+# Turned into a class by Miguel Gomez.
 #
 # This class is used to create a bandpass filter object
 # The filter object constructs an FIR filter from the given inputs:
