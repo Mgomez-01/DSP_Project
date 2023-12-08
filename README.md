@@ -24,16 +24,17 @@ python3 testOBF.py
 ``` pip install numpy matplotlib rich```
 
 
-~~## Run create_FIR_filter.py
-- running create_FIR_filter.py like shown below will show the help option.
-```
-python3 create_FIR_filter.py -h
-```
-
-- example run with 32 elements and fmin=2, fmax=8
-```
-python3 create_FIR_filter.py -N 32 -F 2 8
-```~~
+~## Run create_FIR_filter.py~
+~- running create_FIR_filter.py like shown below will show the help option.~
+~```~
+~python3 create_FIR_filter.py -h~
+~```~
+~~
+~- example run with 32 elements and fmin=2, fmax=8~
+~```~
+~python3 create_FIR_filter.py -N 32 -F 2 8~
+~```~
+~~
 
 
 ## Run create_FIR_filter.py
