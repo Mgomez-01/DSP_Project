@@ -1,0 +1,6 @@
+matplotlib==3.7.1
+numpy==1.23.5
+PyAudio==0.2.14
+pydub==0.25.1
+rich==13.7.0
+scipy==1.11.4
