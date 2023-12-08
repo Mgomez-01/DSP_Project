@@ -110,6 +110,7 @@ class FIRFilter:
 
     # Plotting function, Use this to check the filter created performs as intended
     def plot_filter1(self):
+        font = 15
         # MatPlotLib plotting
         fig = plt.figure(figsize=(22, 16))
 
@@ -117,24 +118,24 @@ class FIRFilter:
         ax1 = fig.add_subplot(211)
         ax1.scatter(self.w, self.H.real, c='b', s=150)
         ax1.plot(self.w_pad, abs(self.H_pad), 'r')
-        ax1.plot(self.w_pad, abs(self.H_ham_pad), 'black')
-        ax1.set_xlabel('Frequency (Hz)', fontsize=10, fontweight='bold')
-        ax1.set_ylabel('Magnitude', fontsize=10, fontweight='bold')
-        ax1.set_title('Frequency Response of FIR Filter', fontsize=10, fontweight='bold')
+        ax1.plot(self.w_pad, abs(self.H_ham_pad), 'black',linewidth=3)
+        ax1.set_xlabel('Frequency (Hz)', fontsize=font, fontweight='bold')
+        ax1.set_ylabel('Magnitude', fontsize=font, fontweight='bold')
+        ax1.set_title('Frequency Response of FIR Filter', fontsize=font+10, fontweight='bold')
         ax1.legend(['Ideal', 'Actual', 'Hamming'], prop={'size': 15})
-        ax1.tick_params(axis='both', labelsize=15)
+        ax1.tick_params(axis='both', labelsize=font+5)
         ax1.grid(True)
 
         # Time Domain Plot
         ax2 = fig.add_subplot(212)
-        ax2.vlines(self.pos, 0, self.h.real, 'b')
-        ax2.scatter(self.pos, self.h.real, c='b', s=150)
+        ax2.vlines(self.pos, 0, self.h_ham.real, 'b')
+        ax2.scatter(self.pos, self.h_ham.real, c='b', s=150)
         # ax2.scatter(self.pos, self.h.imag, c='r', s=150)
-        ax2.set_xlabel('Position', fontsize=10, fontweight='bold')
-        ax2.set_ylabel('Value (Unscaled)', fontsize=10, fontweight='bold')
-        ax2.set_title('Time Domain FIR Filter', fontsize=10, fontweight='bold')
+        ax2.set_xlabel('Position', fontsize=font, fontweight='bold')
+        ax2.set_ylabel('Value (Unscaled)', fontsize=font, fontweight='bold')
+        ax2.set_title('Time Domain FIR Filter', fontsize=font+10, fontweight='bold')
         # ax2.legend(['Real', 'Imag'], prop={'size': 15})
-        ax2.tick_params(axis='both', labelsize=15)
+        ax2.tick_params(axis='both', labelsize=font+5)
         ax2.grid(True)
 
         plt.show(block=False)
