@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2023.5.31)  7 DEC 2023 20:13
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2023.8.5)  8 DEC 2023 19:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1013,11 +1013,8 @@ LaTeX Info: Redefining \nameref on input line 80.
 \@outlinefile=\write4
 \openout4 = `main.out'.
 
-
-
-Package hyperref Warning: Rerun to get /PageLabels entry.
-
 LaTeX Font Info:    Trying to load font information for U+msa on input line 82.
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -1034,11 +1031,6 @@ LaTeX Font Info:    Trying to load font information for U+rsfs on input line 82
 (/usr/share/texlive/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-Underfull \hbox (badness 10000) in paragraph at lines 86--87
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 87--88
 
  []
@@ -1049,18 +1041,46 @@ Underfull \hbox (badness 10000) in paragraph at lines 88--89
  []
 
 
-Overfull \hbox (9.9181pt too wide) in paragraph at lines 97--114
+Underfull \hbox (badness 10000) in paragraph at lines 89--90
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 91--107
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 91--107
+
+ []
+
+[1
+
+]
+File: ../images/4_1a.jpg Graphic file (type bmp)
+<../images/4_1a.jpg>
+File: ../images/4_1a_freqresponses.jpg Graphic file (type bmp)
+<../images/4_1a_freqresponses.jpg>
+ [2]
+File: ../images/4_1a_freqresponse_phase.jpg Graphic file (type bmp)
+<../images/4_1a_freqresponse_phase.jpg>
+
+Underfull \hbox (badness 10000) in paragraph at lines 131--136
+
+ []
+
+
+Overfull \hbox (9.9181pt too wide) in paragraph at lines 141--158
  [][] 
  []
 
 Missing character: There is no ’ ("2019) in font ec-lmr10!
-[1
-
-] [2]
+[3] [4]
 File: ../images/post_lock_freq_data.png Graphic file (type bmp)
 <../images/post_lock_freq_data.png>
 
-Overfull \hbox (16.5026pt too wide) in paragraph at lines 137--138
+Overfull \hbox (16.5026pt too wide) in paragraph at lines 181--182
  []| [] 
  []
 
@@ -1069,36 +1089,36 @@ File: ../images/post_lock_time_data.png Graphic file (type bmp)
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[3] [4]
+[5] [6]
 File: ../images/post_lock_fft_freqdata.png Graphic file (type bmp)
 <../images/post_lock_fft_freqdata.png>
- [5]
+ [7]
 File: ../images/define_freqs.png Graphic file (type bmp)
 <../images/define_freqs.png>
- [6] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+ [8] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
-LaTeX Font Info:    Trying to load font information for T1+pcr on input line 17
-5.
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 21
+9.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-) [7]
+) [9]
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
-) [8] [9]
-[10] [11] [12]
+) [10] [11]
+[12] [13] [14]
 This exam contains 0 questions with 0 parts, 0 subparts, and 0 subsubparts.
 (./main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: EE917FD7878E99CA3C90A267BD927DF3;1859.
  ) 
 Here is how much of TeX's memory you used:
- 40224 strings out of 478158
- 904118 string characters out of 5853402
- 2038833 words of memory out of 5000000
- 60303 multiletter control sequences out of 15000+600000
+ 40250 strings out of 478117
+ 904880 string characters out of 5852388
+ 2039281 words of memory out of 5000000
+ 60332 multiletter control sequences out of 15000+600000
  504464 words of font info for 70 fonts, out of 8000000 for 9000
- 14 hyphenation exceptions out of 8191
+ 36 hyphenation exceptions out of 8191
  103i,11n,105p,668b,1882s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (12 pages).
+Output written on main.pdf (14 pages).

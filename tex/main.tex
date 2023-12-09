@@ -82,13 +82,57 @@ University of Utah Electrical and Computer Engineering}
 \noindent
 \setcounter{section}{3}
 \section{Bandpass Filter Design}
+\subsection{Simple Bandpass Filter Design}
 \begin{itemize}
   \item a) Generate a bandpass filter that will pass a frequency component at $\omega = 0.4 \pi$. Make the filter length $L = 40$ equal to 40. Make a plot of the frequency response magnitude and phase. \\ 
   \item b) Use the plot of the frequency response for the length-40 band-pass filter from part (a), and determine the passband width using the 0.5 level to define the pass band. \\ 
   \item c)  Make two other plots of BPFs for L D 20 and L D 80 with the same \\
 \end{itemize}
-\subsection{Simple Bandpass Filter Design}
+b) Table of vals for the filters.\\
+\begin{table}[!ht]
+  \centering
+  \begin{tabular}{|c|c|c|c|}
+    \hline
+    length $n$&starting freq [rad.]&ending freq [rad.]&bandwidth [rad.]\\
+    \hline
+    20&1.0713&1.4483&.37699\\
+    \hline
+    40&1.1655&1.3509&.18535\\
+    \hline
+    80&1.2095&1.3038&.094248\\
+    \hline 
+  \end{tabular}
+\end{table}\\
+From these figures, it is seen that passband width is inversely proportional to filter length L. For example, if L increases, bandwidth decreases. From the calculated data, you can see further that the proportionality constant is nearly 1. Meaning that if L is doubled, then the bandwidth is nearly halved, and vice versa.\\\\
+\newpage
+a and c are shown below in the following plots
+\begin{figure}[h!]
+  \centering
+  \hspace*{-1.5cm}\includegraphics[width=10cm]{../images/4_1a.jpg}
+  \caption{plot for a simple BPF's}
+  \label{fig:4_1a}
+\end{figure}
+\newline
+\begin{figure}[h!]
+  \centering
+  \hspace*{-1.5cm}\includegraphics[width=10cm]{../images/4_1a_freqresponses.jpg}
+  \caption{plot for all simple BPF's}
+  \label{fig:4_1ac}
+\end{figure}
+\newpage
+\begin{figure}[h!]
+  \centering
+  \hspace*{-1.5cm}\includegraphics[width=10cm]{../images/4_1a_freqresponse_phase.jpg}
+  \caption{plot for all simple BPF's}
+  \label{fig:4_1ac2}
+\end{figure}
+
 \subsection{A Better Bandpass Filter Design}
+a) Generate a Hamming bandpass filter with center frequency $\omega_c = \frac{\pi}{4}$, and filter length $L = 41$. Also determine the Frequency response to a list of specific frequencies. Reference functions for details.\\
+b) Determine the width of the $L = 41$ filter. Then generate 2 more with $L = 21$ and $81$. Plot and compare their pass-bands. Again explain the relationship between $L$ and pass-band width.\\
+d)Use the frequency response and passband width to explain how the component at $\omega = \frac{\pi}{4}$ passed and others were rejected.\\
+Looking at the figure, we can see the strong pass-band component completely covering the input signal component at $\frac{\pi}{4}$, indicating alot of that power will pass thought while all outside will be rejected. From the calculations earlier, the passband for this filter goes from about $0.2\pi$ to $.29\pi$. The only frequency component in this range is $0.25\pi$, which is amplified. All other frequency components are far from this range, and the hamming window stopband is very low, causing frequencies far from the passband range to be heavily attenuated.\\\\
+See code for worked out bits by hand for part C and the rest of the outputs in html. code can be found in in appendix A.
 \section{Detecting Octave Bands}
 \subsection{Piano Octaves}
 This bit was taken care of in Matlab and this is the function to set up the filter bands table. The results are below and a copy of the code is included in appendix A:
