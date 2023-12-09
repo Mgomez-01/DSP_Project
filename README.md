@@ -1,6 +1,7 @@
 # DSP_Project
 Repo to contain all the work we do for the DSP project at the University of Utah 
 
+# Project PDF. Still working on this for others who may come here in the future
 [Link to the pdf](./tex/main.pdf)
 
 ## Commit from Miguel to start the repo
