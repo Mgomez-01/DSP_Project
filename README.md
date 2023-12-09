@@ -1,6 +1,8 @@
 # DSP_Project
 Repo to contain all the work we do for the DSP project at the University of Utah 
 
+[Link to the pdf](./tex/main.pdf)
+
 ## Commit from Miguel to start the repo
 
 [Link to the Piazza post](https://piazza.com/class/llj01zibs9l1ky/post/44)
